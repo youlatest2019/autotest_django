@@ -1,0 +1,1679 @@
+2023-06-07 16:34:12,722 mydb.py[line: 37] ERROR: 初始化数据连接失败：2003 (HY000): Can't connect to MySQL server on '10.118.59.84:3307' (10060)
+2023-06-07 16:38:15,644 mydb.py[line: 37] ERROR: 初始化数据连接失败：2003 (HY000): Can't connect to MySQL server on '10.118.59.84:3307' (10060)
+2023-06-07 16:41:04,245 mydb.py[line: 37] ERROR: 初始化数据连接失败：2003 (HY000): Can't connect to MySQL server on '10.118.59.84:3307' (10060)
+2023-06-07 16:42:50,417 mydb.py[line: 37] ERROR: 初始化数据连接失败：2003 (HY000): Can't connect to MySQL server on '10.118.59.84:3307' (10060)
+2023-06-07 16:49:57,177 mydb.py[line: 37] ERROR: 初始化数据连接失败：2003 (HY000): Can't connect to MySQL server on '10.118.59.84:3307' (10060)
+2023-06-07 16:50:34,528 main.py[line: 26] INFO: 执行当前脚本的Python版本：3.9.5
+2023-06-07 16:50:34,529 main.py[line: 28] INFO: 当前运行模式为：rop
+2023-06-07 16:50:34,529 main.py[line: 31] INFO: 当前运行计划编号为：1686125776140380
+2023-06-07 16:50:34,529 main.py[line: 41] INFO: 正在查询运行计划相关信息
+2023-06-07 16:50:34,530 mydb.py[line: 96] INFO: query：SELECT running_plan_name,project_id, project_name, plan_name, plan_id, valid_flag FROM `website_running_plan` WHERE running_plan_num =%s  data：('1686125776140380',)
+2023-06-07 16:50:34,530 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT running_plan_name,project_id, project_name, plan_name, plan_id, valid_flag FROM `website_running_plan` WHERE running_plan_num =1686125776140380
+2023-06-07 16:50:34,533 main.py[line: 48] INFO: 待运行项目：名称：test_ui，ID：1，关联的测试计划有：测试计划1
+2023-06-07 16:50:34,533 main.py[line: 51] INFO: ======================开始执行运行计划[名称：测试运行计划01]======================
+2023-06-07 16:50:34,534 running_plan.py[line: 24] INFO: 正在查询项目[ID：1,名称：test_ui]相关信息
+2023-06-07 16:50:34,534 mydb.py[line: 96] INFO: query：SELECT home_page, environment_id, valid_flag FROM `website_ui_project_setting` WHERE id = %s  data：(1,)
+2023-06-07 16:50:34,534 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT home_page, environment_id, valid_flag FROM `website_ui_project_setting` WHERE id = 1
+2023-06-07 16:50:34,537 running_plan.py[line: 31] INFO: 正在查询与项目关联的数据库信息
+2023-06-07 16:50:34,538 mydb.py[line: 124] INFO: query：SELECT db_type, db_alias, db_name, db_host, db_port, db_user, db_passwd FROM `website_database_setting` WHERE  locate('UI1', project_id) != 0  AND environment_id= '1'  data：
+2023-06-07 16:50:34,541 running_plan.py[line: 45] INFO: 正在查询与项目关联的全局变量
+2023-06-07 16:50:34,542 mydb.py[line: 124] INFO: query：SELECT `name`, `value` FROM `website_global_variable_setting` WHERE  project_type='UI项目' AND locate('%s', project_id) != 0 AND locate('%s', env_id) != 0   data：(1, 1)
+2023-06-07 16:50:34,544 running_plan.py[line: 60] INFO: ======================开始运行测试项目[名称：test_ui, ID：1]======================
+2023-06-07 16:50:34,545 test_project.py[line: 98] INFO: ======================正在同步更新与待运行测试计划关联的所有用例树节点信息======================
+2023-06-07 16:50:34,545 test_project.py[line: 36] INFO: 待运行计划ID列表：['1']
+2023-06-07 16:50:34,546 test_project.py[line: 38] INFO: 正在查询与测试计划关联的用例树节点
+2023-06-07 16:50:34,546 mydb.py[line: 124] INFO: query：SELECT node_id FROM `website_ui_case_tree_test_plan` WHERE plan_id IN (1) GROUP BY node_id  data：
+2023-06-07 16:50:34,564 test_project.py[line: 52] INFO: 正在查找用例树节点信息
+2023-06-07 16:50:34,565 mydb.py[line: 96] INFO: query：SELECT t1.text, t1.parent_id, COUNT(t2.id) FROM `website_ui_case_tree` AS t1 LEFT JOIN `website_ui_case_tree` AS t2 ON t2.parent_id = t1.id WHERE t1.id = %s  data：(1,)
+2023-06-07 16:50:34,566 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT t1.text, t1.parent_id, COUNT(t2.id) FROM `website_ui_case_tree` AS t1 LEFT JOIN `website_ui_case_tree` AS t2 ON t2.parent_id = t1.id WHERE t1.id = 1
+2023-06-07 16:50:34,570 mydb.py[line: 96] INFO: query：SELECT parent_id, text FROM `website_ui_case_tree` WHERE id = %s  data：(0,)
+2023-06-07 16:50:34,570 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT parent_id, text FROM `website_ui_case_tree` WHERE id = 0
+2023-06-07 16:50:34,573 test_project.py[line: 64] INFO: 正在更新测试计划用例树节点关联表记录
+2023-06-07 16:50:34,573 mydb.py[line: 81] INFO: update_query：UPDATE website_ui_case_tree_test_plan SET node_path='', sub_node_num=1 WHERE plan_id IN (1) AND node_id = 1
+2023-06-07 16:50:34,576 test_project.py[line: 52] INFO: 正在查找用例树节点信息
+2023-06-07 16:50:34,576 mydb.py[line: 96] INFO: query：SELECT t1.text, t1.parent_id, COUNT(t2.id) FROM `website_ui_case_tree` AS t1 LEFT JOIN `website_ui_case_tree` AS t2 ON t2.parent_id = t1.id WHERE t1.id = %s  data：(2,)
+2023-06-07 16:50:34,576 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT t1.text, t1.parent_id, COUNT(t2.id) FROM `website_ui_case_tree` AS t1 LEFT JOIN `website_ui_case_tree` AS t2 ON t2.parent_id = t1.id WHERE t1.id = 2
+2023-06-07 16:50:34,579 mydb.py[line: 96] INFO: query：SELECT parent_id, text FROM `website_ui_case_tree` WHERE id = %s  data：(1,)
+2023-06-07 16:50:34,580 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT parent_id, text FROM `website_ui_case_tree` WHERE id = 1
+2023-06-07 16:50:34,583 mydb.py[line: 96] INFO: query：SELECT parent_id, text FROM `website_ui_case_tree` WHERE id = %s  data：(0,)
+2023-06-07 16:50:34,584 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT parent_id, text FROM `website_ui_case_tree` WHERE id = 0
+2023-06-07 16:50:34,586 test_project.py[line: 64] INFO: 正在更新测试计划用例树节点关联表记录
+2023-06-07 16:50:34,587 mydb.py[line: 81] INFO: update_query：UPDATE website_ui_case_tree_test_plan SET node_path='test_ui', sub_node_num=0 WHERE plan_id IN (1) AND node_id = 2
+2023-06-07 16:50:34,589 test_project.py[line: 104] INFO: 同步更新与待运行测试计划关联的所有用例树节点信息成功
+2023-06-07 16:50:34,590 test_project.py[line: 107] INFO: 正在查询测试计划[ID：1]相关信息
+2023-06-07 16:50:34,590 mydb.py[line: 96] INFO: query：SELECT plan_name, browsers, valid_flag FROM `website_ui_test_plan` WHERE id = %s  data：('1',)
+2023-06-07 16:50:34,590 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT plan_name, browsers, valid_flag FROM `website_ui_test_plan` WHERE id = 1
+2023-06-07 16:50:34,593 test_project.py[line: 113] INFO: ======================开始运行测试计划[名称：测试计划1, ID：1]======================
+2023-06-07 16:50:34,594 test_plan.py[line: 31] INFO: 计划运行的浏览器有：['谷歌']
+2023-06-07 16:50:34,594 test_plan.py[line: 33] INFO: 正在查询测试计划关联的测试用例
+2023-06-07 16:50:34,594 mydb.py[line: 124] INFO: query：SELECT node_id, node_path, node_name FROM `website_ui_case_tree_test_plan` WHERE plan_id = %s AND sub_node_num = 0 ORDER BY `order` ASC  data：('1',)
+2023-06-07 16:50:34,597 test_plan.py[line: 52] INFO: 正在往测试报告-测试概况插入计划执行概要记录
+2023-06-07 16:50:34,598 mydb.py[line: 65] INFO: query：INSERT INTO `website_ui_test_report_for_summary`(execution_num, project_id, plan_id, project_name, plan_name, browser,start_time, end_time, time_took, case_total_num, case_pass_num, case_fail_num, case_block_num, remark) VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s,%s, %s, %s, %s)  data：('1686127834', 1, '1', 'test_ui', '测试计划1', '谷歌', '2023-06-07 16:50:34', '', '', 0, 0, 0, 0, '')
+2023-06-07 16:50:34,668 test_plan.py[line: 55] INFO: 正在获取浏览器驱动
+2023-06-07 16:50:39,370 test_plan.py[line: 65] INFO: 正在打开项目主页：http://192.168.20.157:1003/portal/main_new.do
+2023-06-07 16:50:41,140 test_plan.py[line: 70] INFO: ======================正在【谷歌】浏览器下运行测试用例======================
+2023-06-07 16:50:41,141 test_plan.py[line: 74] INFO: ======================开始运行测试用例[名称：ID2-登录测试, ID:2]======================
+2023-06-07 16:50:41,142 test_case.py[line: 29] INFO: 正在查询测试用例[ID：2, 名称：ID2-登录测试]关联的测试步骤
+2023-06-07 16:50:41,143 mydb.py[line: 124] INFO: query：SELECT id, `order`, object_type, page_name, object, exec_operation, input_params, output_params,assert_type, assert_pattern, run_times, try_for_failure, object_id FROM `website_ui_test_case_step` WHERE case_id=%s AND status='启用' ORDER BY `order` ASC  data：(2,)
+2023-06-07 16:50:41,147 test_case.py[line: 67] INFO: ======================开始运行测试步骤：第 1 步======================
+2023-06-07 16:50:41,148 test_case.py[line: 68] INFO: 所属用例：ID2-登录测试
+2023-06-07 16:50:41,149 test_case.py[line: 69] INFO: 所属用例ID：2
+2023-06-07 16:50:41,150 test_case.py[line: 70] INFO: 步骤ID：1
+2023-06-07 16:50:41,150 test_case.py[line: 71] INFO: 步骤类型：操作页面元素
+2023-06-07 16:50:41,150 test_case.py[line: 72] INFO: 操作对象：账号输入
+2023-06-07 16:50:41,151 test_case.py[line: 73] INFO: 所在页面：test_ui->登录页面
+2023-06-07 16:50:41,151 test_case.py[line: 74] INFO: 执行操作：输入
+2023-06-07 16:50:41,152 test_case.py[line: 75] INFO: 输入参数：zx1
+2023-06-07 16:50:41,154 test_case.py[line: 76] INFO: 断言类型：
+2023-06-07 16:50:41,155 test_case.py[line: 77] INFO: 断言模式：
+
+2023-06-07 16:50:41,159 test_case_step.py[line: 41] INFO: 正在查找页面元素选择器
+2023-06-07 16:50:41,159 mydb.py[line: 96] INFO: query：SELECT selector1, selector2 FROM `website_page_element` WHERE  id = %s  data：(1,)
+2023-06-07 16:50:41,159 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT selector1, selector2 FROM `website_page_element` WHERE  id = 1
+2023-06-07 16:50:41,162 test_case_step.py[line: 46] INFO: 正在运行第1次
+2023-06-07 16:50:41,163 seleniumutil.py[line: 362] INFO: 正在根据元素定位器：ID=userno查找元素
+2023-06-07 16:50:41,165 seleniumutil.py[line: 372] INFO: 查找元素采用的适配器：id
+2023-06-07 16:50:41,165 seleniumutil.py[line: 373] INFO: 查找元素采用的选择器：userno
+2023-06-07 16:50:41,166 seleniumutil.py[line: 376] INFO: find_element_by_id：userno
+2023-06-07 16:50:41,218 test_case_step.py[line: 105] INFO: 找到元素：<selenium.webdriver.remote.webelement.WebElement (session="718d12ee8a6f5a44103c8c8ee63c2c56", element="605F481700E482E491AF1681E3342ED1_element_11")>
+2023-06-07 16:50:41,261 test_case_step.py[line: 124] INFO: 输入数据成功
+2023-06-07 16:50:41,261 test_case_step.py[line: 50] INFO: 运行成功
+2023-06-07 16:50:41,261 test_case_step.py[line: 46] INFO: 正在运行第2次
+2023-06-07 16:50:41,262 seleniumutil.py[line: 362] INFO: 正在根据元素定位器：ID=userno查找元素
+2023-06-07 16:50:41,262 seleniumutil.py[line: 372] INFO: 查找元素采用的适配器：id
+2023-06-07 16:50:41,262 seleniumutil.py[line: 373] INFO: 查找元素采用的选择器：userno
+2023-06-07 16:50:41,263 seleniumutil.py[line: 376] INFO: find_element_by_id：userno
+2023-06-07 16:50:41,283 test_case_step.py[line: 105] INFO: 找到元素：<selenium.webdriver.remote.webelement.WebElement (session="718d12ee8a6f5a44103c8c8ee63c2c56", element="605F481700E482E491AF1681E3342ED1_element_11")>
+2023-06-07 16:50:41,309 test_case_step.py[line: 124] INFO: 输入数据成功
+2023-06-07 16:50:41,309 test_case_step.py[line: 50] INFO: 运行成功
+2023-06-07 16:50:41,310 test_case_step.py[line: 78] INFO: ======================正在记录用例步骤运行结果到测试报告-用例步骤执行明细表======================
+2023-06-07 16:50:41,310 mydb.py[line: 65] INFO: query：INSERT INTO `website_ui_test_report_for_case_step`(execution_num, plan_id, case_id, step_id, `order`, page, object, exec_operation, input_params, output_params, assert_type, check_pattern, run_times, try_for_failure, run_result, remark, run_time, run_id) VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)  data：('1686127834', '1', 2, 1, 1, 'test_ui->登录页面', '账号输入', '输入', 'zx1', '', '', '', 1, 1, '成功', '', '2023-06-07 16:50:41', 0)
+2023-06-07 16:50:41,387 test_case.py[line: 67] INFO: ======================开始运行测试步骤：第 2 步======================
+2023-06-07 16:50:41,388 test_case.py[line: 68] INFO: 所属用例：ID2-登录测试
+2023-06-07 16:50:41,388 test_case.py[line: 69] INFO: 所属用例ID：2
+2023-06-07 16:50:41,389 test_case.py[line: 70] INFO: 步骤ID：2
+2023-06-07 16:50:41,389 test_case.py[line: 71] INFO: 步骤类型：操作页面元素
+2023-06-07 16:50:41,389 test_case.py[line: 72] INFO: 操作对象：登录按钮
+2023-06-07 16:50:41,390 test_case.py[line: 73] INFO: 所在页面：test_ui->登录页面
+2023-06-07 16:50:41,390 test_case.py[line: 74] INFO: 执行操作：点击
+2023-06-07 16:50:41,390 test_case.py[line: 75] INFO: 输入参数：
+2023-06-07 16:50:41,390 test_case.py[line: 76] INFO: 断言类型：
+2023-06-07 16:50:41,390 test_case.py[line: 77] INFO: 断言模式：
+
+2023-06-07 16:50:41,391 test_case_step.py[line: 41] INFO: 正在查找页面元素选择器
+2023-06-07 16:50:41,391 mydb.py[line: 96] INFO: query：SELECT selector1, selector2 FROM `website_page_element` WHERE  id = %s  data：(2,)
+2023-06-07 16:50:41,391 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT selector1, selector2 FROM `website_page_element` WHERE  id = 2
+2023-06-07 16:50:41,393 test_case_step.py[line: 46] INFO: 正在运行第1次
+2023-06-07 16:50:41,393 seleniumutil.py[line: 362] INFO: 正在根据元素定位器：XPATH=//*[@id='submitA']/img查找元素
+2023-06-07 16:50:41,393 seleniumutil.py[line: 372] INFO: 查找元素采用的适配器：xpath
+2023-06-07 16:50:41,394 seleniumutil.py[line: 373] INFO: 查找元素采用的选择器：//*[@id='submitA']/img
+2023-06-07 16:50:41,394 seleniumutil.py[line: 383] INFO: find_element_by_xpath：//*[@id='submitA']/img
+2023-06-07 16:50:41,416 test_case_step.py[line: 105] INFO: 找到元素：<selenium.webdriver.remote.webelement.WebElement (session="718d12ee8a6f5a44103c8c8ee63c2c56", element="605F481700E482E491AF1681E3342ED1_element_9")>
+2023-06-07 16:50:41,468 test_case_step.py[line: 157] INFO: 点击操作成功
+2023-06-07 16:50:41,468 test_case_step.py[line: 50] INFO: 运行成功
+2023-06-07 16:50:41,468 test_case_step.py[line: 46] INFO: 正在运行第2次
+2023-06-07 16:50:41,469 seleniumutil.py[line: 362] INFO: 正在根据元素定位器：XPATH=//*[@id='submitA']/img查找元素
+2023-06-07 16:50:41,469 seleniumutil.py[line: 372] INFO: 查找元素采用的适配器：xpath
+2023-06-07 16:50:41,470 seleniumutil.py[line: 373] INFO: 查找元素采用的选择器：//*[@id='submitA']/img
+2023-06-07 16:50:41,471 seleniumutil.py[line: 383] INFO: find_element_by_xpath：//*[@id='submitA']/img
+2023-06-07 16:50:41,501 test_case_step.py[line: 105] INFO: 找到元素：<selenium.webdriver.remote.webelement.WebElement (session="718d12ee8a6f5a44103c8c8ee63c2c56", element="605F481700E482E491AF1681E3342ED1_element_9")>
+2023-06-07 16:50:41,532 test_case_step.py[line: 157] INFO: 点击操作成功
+2023-06-07 16:50:41,533 test_case_step.py[line: 50] INFO: 运行成功
+2023-06-07 16:50:41,533 test_case_step.py[line: 78] INFO: ======================正在记录用例步骤运行结果到测试报告-用例步骤执行明细表======================
+2023-06-07 16:50:41,533 mydb.py[line: 65] INFO: query：INSERT INTO `website_ui_test_report_for_case_step`(execution_num, plan_id, case_id, step_id, `order`, page, object, exec_operation, input_params, output_params, assert_type, check_pattern, run_times, try_for_failure, run_result, remark, run_time, run_id) VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)  data：('1686127834', '1', 2, 2, 2, 'test_ui->登录页面', '登录按钮', '点击', '', '', '', '', 1, 1, '成功', '', '2023-06-07 16:50:41', 0)
+2023-06-07 16:50:41,678 test_case.py[line: 67] INFO: ======================开始运行测试步骤：第 3 步======================
+2023-06-07 16:50:41,679 test_case.py[line: 68] INFO: 所属用例：ID2-登录测试
+2023-06-07 16:50:41,680 test_case.py[line: 69] INFO: 所属用例ID：2
+2023-06-07 16:50:41,680 test_case.py[line: 70] INFO: 步骤ID：3
+2023-06-07 16:50:41,680 test_case.py[line: 71] INFO: 步骤类型：操作系统函数
+2023-06-07 16:50:41,681 test_case.py[line: 72] INFO: 操作对象：智能等待
+2023-06-07 16:50:41,681 test_case.py[line: 73] INFO: 所在页面：--
+2023-06-07 16:50:41,681 test_case.py[line: 74] INFO: 执行操作：CALL
+2023-06-07 16:50:41,681 test_case.py[line: 75] INFO: 输入参数：2
+2023-06-07 16:50:41,681 test_case.py[line: 76] INFO: 断言类型：
+2023-06-07 16:50:41,682 test_case.py[line: 77] INFO: 断言模式：
+
+2023-06-07 16:50:41,683 test_case_step.py[line: 78] INFO: ======================正在记录用例步骤运行结果到测试报告-用例步骤执行明细表======================
+2023-06-07 16:50:41,683 mydb.py[line: 65] INFO: query：INSERT INTO `website_ui_test_report_for_case_step`(execution_num, plan_id, case_id, step_id, `order`, page, object, exec_operation, input_params, output_params, assert_type, check_pattern, run_times, try_for_failure, run_result, remark, run_time, run_id) VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)  data：('1686127834', '1', 2, 3, 3, '--', '智能等待', 'CALL', '2', '', '', '', 1, 1, '成功', '', '2023-06-07 16:50:41', 0)
+2023-06-07 16:50:41,778 test_case.py[line: 114] INFO: 正在计算运行耗时
+2023-06-07 16:50:41,779 test_case.py[line: 120] INFO: 正在记录用例运行结果到测试报告-用例执行明细表
+2023-06-07 16:50:41,779 mydb.py[line: 65] INFO: query：INSERT INTO `website_ui_test_report_for_case`(execution_num, plan_id, case_id, case_path, case_name, run_result, remark, run_time, time_took) VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s)  data：('1686127834', '1', 2, 'test_ui', 'ID2-登录测试', '成功', '', '2023-06-07 16:50:41', '0天 0小时 0分 0秒')
+2023-06-07 16:50:44,352 test_plan.py[line: 99] INFO: 测试用例执行完毕，正在更新测试报告-测试概况表
+2023-06-07 16:50:44,353 test_report.py[line: 14] INFO: 正在查询运行状态为：成功的用例记录数
+2023-06-07 16:50:44,353 mydb.py[line: 96] INFO: query：SELECT COUNT(id) FROM `website_ui_test_report_for_case` WHERE run_result = '%s' and plan_id = %s AND execution_num =%s  data：('成功', '1', '1686127834')
+2023-06-07 16:50:44,354 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT COUNT(id) FROM `website_ui_test_report_for_case` WHERE run_result = '成功' and plan_id = 1 AND execution_num =1686127834
+2023-06-07 16:50:44,356 test_report.py[line: 14] INFO: 正在查询运行状态为：失败的用例记录数
+2023-06-07 16:50:44,357 mydb.py[line: 96] INFO: query：SELECT COUNT(id) FROM `website_ui_test_report_for_case` WHERE run_result = '%s' and plan_id = %s AND execution_num =%s  data：('失败', '1', '1686127834')
+2023-06-07 16:50:44,357 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT COUNT(id) FROM `website_ui_test_report_for_case` WHERE run_result = '失败' and plan_id = 1 AND execution_num =1686127834
+2023-06-07 16:50:44,360 test_report.py[line: 14] INFO: 正在查询运行状态为：阻塞的用例记录数
+2023-06-07 16:50:44,361 mydb.py[line: 96] INFO: query：SELECT COUNT(id) FROM `website_ui_test_report_for_case` WHERE run_result = '%s' and plan_id = %s AND execution_num =%s  data：('阻塞', '1', '1686127834')
+2023-06-07 16:50:44,361 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT COUNT(id) FROM `website_ui_test_report_for_case` WHERE run_result = '阻塞' and plan_id = 1 AND execution_num =1686127834
+2023-06-07 16:50:44,364 mydb.py[line: 81] INFO: update_query：UPDATE `website_ui_test_report_for_summary` SET end_time='2023-06-07 16:50:44', time_took='0天 0小时 0分 9秒', case_total_num=1, case_pass_num=1, case_fail_num=0, case_block_num=0, remark='' WHERE execution_num='1686127834' AND plan_id=1
+2023-06-07 16:50:44,430 running_plan.py[line: 83] INFO: 正在释放资源
+2023-06-07 16:50:44,431 running_plan.py[line: 84] INFO: 正在断开与项目关联的数据库连接
+2023-06-07 16:50:44,432 running_plan.py[line: 90] INFO: 正在清理与项目关联的全局变量
+2023-06-07 16:50:44,433 main.py[line: 54] INFO: 执行成功，正在更新数据库运行计划的运行状态
+2023-06-07 16:50:44,434 mydb.py[line: 81] INFO: update_query：UPDATE `website_running_plan` SET running_status ='运行成功', remark='' WHERE running_plan_num= 1686125776140380
+2023-06-07 16:54:16,033 main.py[line: 26] INFO: 执行当前脚本的Python版本：3.9.5
+2023-06-07 16:54:16,034 main.py[line: 28] INFO: 当前运行模式为：rop
+2023-06-07 16:54:16,034 main.py[line: 31] INFO: 当前运行计划编号为：1686125776140380
+2023-06-07 16:54:16,035 main.py[line: 41] INFO: 正在查询运行计划相关信息
+2023-06-07 16:54:16,035 mydb.py[line: 96] INFO: query：SELECT running_plan_name,project_id, project_name, plan_name, plan_id, valid_flag FROM `website_running_plan` WHERE running_plan_num =%s  data：('1686125776140380',)
+2023-06-07 16:54:16,035 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT running_plan_name,project_id, project_name, plan_name, plan_id, valid_flag FROM `website_running_plan` WHERE running_plan_num =1686125776140380
+2023-06-07 16:54:16,039 main.py[line: 48] INFO: 待运行项目：名称：test_ui，ID：1，关联的测试计划有：测试计划1
+2023-06-07 16:54:16,039 main.py[line: 51] INFO: ======================开始执行运行计划[名称：测试运行计划01]======================
+2023-06-07 16:54:16,039 running_plan.py[line: 24] INFO: 正在查询项目[ID：1,名称：test_ui]相关信息
+2023-06-07 16:54:16,040 mydb.py[line: 96] INFO: query：SELECT home_page, environment_id, valid_flag FROM `website_ui_project_setting` WHERE id = %s  data：(1,)
+2023-06-07 16:54:16,040 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT home_page, environment_id, valid_flag FROM `website_ui_project_setting` WHERE id = 1
+2023-06-07 16:54:16,042 running_plan.py[line: 31] INFO: 正在查询与项目关联的数据库信息
+2023-06-07 16:54:16,043 mydb.py[line: 124] INFO: query：SELECT db_type, db_alias, db_name, db_host, db_port, db_user, db_passwd FROM `website_database_setting` WHERE  locate('UI1', project_id) != 0  AND environment_id= '1'  data：
+2023-06-07 16:54:16,046 running_plan.py[line: 45] INFO: 正在查询与项目关联的全局变量
+2023-06-07 16:54:16,047 mydb.py[line: 124] INFO: query：SELECT `name`, `value` FROM `website_global_variable_setting` WHERE  project_type='UI项目' AND locate('%s', project_id) != 0 AND locate('%s', env_id) != 0   data：(1, 1)
+2023-06-07 16:54:16,050 running_plan.py[line: 60] INFO: ======================开始运行测试项目[名称：test_ui, ID：1]======================
+2023-06-07 16:54:16,050 test_project.py[line: 98] INFO: ======================正在同步更新与待运行测试计划关联的所有用例树节点信息======================
+2023-06-07 16:54:16,051 test_project.py[line: 36] INFO: 待运行计划ID列表：['1']
+2023-06-07 16:54:16,051 test_project.py[line: 38] INFO: 正在查询与测试计划关联的用例树节点
+2023-06-07 16:54:16,051 mydb.py[line: 124] INFO: query：SELECT node_id FROM `website_ui_case_tree_test_plan` WHERE plan_id IN (1) GROUP BY node_id  data：
+2023-06-07 16:54:16,054 test_project.py[line: 52] INFO: 正在查找用例树节点信息
+2023-06-07 16:54:16,055 mydb.py[line: 96] INFO: query：SELECT t1.text, t1.parent_id, COUNT(t2.id) FROM `website_ui_case_tree` AS t1 LEFT JOIN `website_ui_case_tree` AS t2 ON t2.parent_id = t1.id WHERE t1.id = %s  data：(1,)
+2023-06-07 16:54:16,055 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT t1.text, t1.parent_id, COUNT(t2.id) FROM `website_ui_case_tree` AS t1 LEFT JOIN `website_ui_case_tree` AS t2 ON t2.parent_id = t1.id WHERE t1.id = 1
+2023-06-07 16:54:16,059 mydb.py[line: 96] INFO: query：SELECT parent_id, text FROM `website_ui_case_tree` WHERE id = %s  data：(0,)
+2023-06-07 16:54:16,059 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT parent_id, text FROM `website_ui_case_tree` WHERE id = 0
+2023-06-07 16:54:16,062 test_project.py[line: 64] INFO: 正在更新测试计划用例树节点关联表记录
+2023-06-07 16:54:16,062 mydb.py[line: 81] INFO: update_query：UPDATE website_ui_case_tree_test_plan SET node_path='', sub_node_num=1 WHERE plan_id IN (1) AND node_id = 1
+2023-06-07 16:54:16,065 test_project.py[line: 52] INFO: 正在查找用例树节点信息
+2023-06-07 16:54:16,065 mydb.py[line: 96] INFO: query：SELECT t1.text, t1.parent_id, COUNT(t2.id) FROM `website_ui_case_tree` AS t1 LEFT JOIN `website_ui_case_tree` AS t2 ON t2.parent_id = t1.id WHERE t1.id = %s  data：(2,)
+2023-06-07 16:54:16,066 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT t1.text, t1.parent_id, COUNT(t2.id) FROM `website_ui_case_tree` AS t1 LEFT JOIN `website_ui_case_tree` AS t2 ON t2.parent_id = t1.id WHERE t1.id = 2
+2023-06-07 16:54:16,068 mydb.py[line: 96] INFO: query：SELECT parent_id, text FROM `website_ui_case_tree` WHERE id = %s  data：(1,)
+2023-06-07 16:54:16,069 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT parent_id, text FROM `website_ui_case_tree` WHERE id = 1
+2023-06-07 16:54:16,071 mydb.py[line: 96] INFO: query：SELECT parent_id, text FROM `website_ui_case_tree` WHERE id = %s  data：(0,)
+2023-06-07 16:54:16,071 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT parent_id, text FROM `website_ui_case_tree` WHERE id = 0
+2023-06-07 16:54:16,074 test_project.py[line: 64] INFO: 正在更新测试计划用例树节点关联表记录
+2023-06-07 16:54:16,074 mydb.py[line: 81] INFO: update_query：UPDATE website_ui_case_tree_test_plan SET node_path='test_ui', sub_node_num=0 WHERE plan_id IN (1) AND node_id = 2
+2023-06-07 16:54:16,076 test_project.py[line: 104] INFO: 同步更新与待运行测试计划关联的所有用例树节点信息成功
+2023-06-07 16:54:16,077 test_project.py[line: 107] INFO: 正在查询测试计划[ID：1]相关信息
+2023-06-07 16:54:16,077 mydb.py[line: 96] INFO: query：SELECT plan_name, browsers, valid_flag FROM `website_ui_test_plan` WHERE id = %s  data：('1',)
+2023-06-07 16:54:16,078 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT plan_name, browsers, valid_flag FROM `website_ui_test_plan` WHERE id = 1
+2023-06-07 16:54:16,081 test_project.py[line: 113] INFO: ======================开始运行测试计划[名称：测试计划1, ID：1]======================
+2023-06-07 16:54:16,081 test_plan.py[line: 31] INFO: 计划运行的浏览器有：['谷歌']
+2023-06-07 16:54:16,082 test_plan.py[line: 33] INFO: 正在查询测试计划关联的测试用例
+2023-06-07 16:54:16,082 mydb.py[line: 124] INFO: query：SELECT node_id, node_path, node_name FROM `website_ui_case_tree_test_plan` WHERE plan_id = %s AND sub_node_num = 0 ORDER BY `order` ASC  data：('1',)
+2023-06-07 16:54:16,085 test_plan.py[line: 52] INFO: 正在往测试报告-测试概况插入计划执行概要记录
+2023-06-07 16:54:16,085 mydb.py[line: 65] INFO: query：INSERT INTO `website_ui_test_report_for_summary`(execution_num, project_id, plan_id, project_name, plan_name, browser,start_time, end_time, time_took, case_total_num, case_pass_num, case_fail_num, case_block_num, remark) VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s,%s, %s, %s, %s)  data：('1686128056', 1, '1', 'test_ui', '测试计划1', '谷歌', '2023-06-07 16:54:16', '', '', 0, 0, 0, 0, '')
+2023-06-07 16:54:16,201 test_plan.py[line: 55] INFO: 正在获取浏览器驱动
+2023-06-07 16:54:17,841 test_plan.py[line: 65] INFO: 正在打开项目主页：http://192.168.20.157:1003/portal/main_new.do
+2023-06-07 16:54:20,033 test_plan.py[line: 70] INFO: ======================正在【谷歌】浏览器下运行测试用例======================
+2023-06-07 16:54:20,033 test_plan.py[line: 74] INFO: ======================开始运行测试用例[名称：ID2-登录测试, ID:2]======================
+2023-06-07 16:54:20,035 test_case.py[line: 29] INFO: 正在查询测试用例[ID：2, 名称：ID2-登录测试]关联的测试步骤
+2023-06-07 16:54:20,036 mydb.py[line: 124] INFO: query：SELECT id, `order`, object_type, page_name, object, exec_operation, input_params, output_params,assert_type, assert_pattern, run_times, try_for_failure, object_id FROM `website_ui_test_case_step` WHERE case_id=%s AND status='启用' ORDER BY `order` ASC  data：(2,)
+2023-06-07 16:54:20,041 test_case.py[line: 67] INFO: ======================开始运行测试步骤：第 1 步======================
+2023-06-07 16:54:20,041 test_case.py[line: 68] INFO: 所属用例：ID2-登录测试
+2023-06-07 16:54:20,044 test_case.py[line: 69] INFO: 所属用例ID：2
+2023-06-07 16:54:20,047 test_case.py[line: 70] INFO: 步骤ID：1
+2023-06-07 16:54:20,051 test_case.py[line: 71] INFO: 步骤类型：操作页面元素
+2023-06-07 16:54:20,054 test_case.py[line: 72] INFO: 操作对象：账号输入
+2023-06-07 16:54:20,055 test_case.py[line: 73] INFO: 所在页面：test_ui->登录页面
+2023-06-07 16:54:20,058 test_case.py[line: 74] INFO: 执行操作：输入
+2023-06-07 16:54:20,059 test_case.py[line: 75] INFO: 输入参数：zx1
+2023-06-07 16:54:20,059 test_case.py[line: 76] INFO: 断言类型：
+2023-06-07 16:54:20,060 test_case.py[line: 77] INFO: 断言模式：
+
+2023-06-07 16:54:20,060 test_case_step.py[line: 41] INFO: 正在查找页面元素选择器
+2023-06-07 16:54:20,061 mydb.py[line: 96] INFO: query：SELECT selector1, selector2 FROM `website_page_element` WHERE  id = %s  data：(1,)
+2023-06-07 16:54:20,062 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT selector1, selector2 FROM `website_page_element` WHERE  id = 1
+2023-06-07 16:54:20,066 test_case_step.py[line: 46] INFO: 正在运行第1次
+2023-06-07 16:54:20,067 seleniumutil.py[line: 362] INFO: 正在根据元素定位器：ID=userno查找元素
+2023-06-07 16:54:20,068 seleniumutil.py[line: 372] INFO: 查找元素采用的适配器：id
+2023-06-07 16:54:20,070 seleniumutil.py[line: 373] INFO: 查找元素采用的选择器：userno
+2023-06-07 16:54:20,071 seleniumutil.py[line: 376] INFO: find_element_by_id：userno
+2023-06-07 16:54:20,118 test_case_step.py[line: 105] INFO: 找到元素：<selenium.webdriver.remote.webelement.WebElement (session="083f6c5b6659c677eccf90e1abe6507f", element="DCFBE2248B53C5B3F1473A4320543E11_element_10")>
+2023-06-07 16:54:20,157 test_case_step.py[line: 124] INFO: 输入数据成功
+2023-06-07 16:54:20,158 test_case_step.py[line: 50] INFO: 运行成功
+2023-06-07 16:54:20,158 test_case_step.py[line: 46] INFO: 正在运行第2次
+2023-06-07 16:54:20,158 seleniumutil.py[line: 362] INFO: 正在根据元素定位器：ID=userno查找元素
+2023-06-07 16:54:20,159 seleniumutil.py[line: 372] INFO: 查找元素采用的适配器：id
+2023-06-07 16:54:20,159 seleniumutil.py[line: 373] INFO: 查找元素采用的选择器：userno
+2023-06-07 16:54:20,160 seleniumutil.py[line: 376] INFO: find_element_by_id：userno
+2023-06-07 16:54:20,182 test_case_step.py[line: 105] INFO: 找到元素：<selenium.webdriver.remote.webelement.WebElement (session="083f6c5b6659c677eccf90e1abe6507f", element="DCFBE2248B53C5B3F1473A4320543E11_element_10")>
+2023-06-07 16:54:20,214 test_case_step.py[line: 124] INFO: 输入数据成功
+2023-06-07 16:54:20,214 test_case_step.py[line: 50] INFO: 运行成功
+2023-06-07 16:54:20,215 test_case_step.py[line: 78] INFO: ======================正在记录用例步骤运行结果到测试报告-用例步骤执行明细表======================
+2023-06-07 16:54:20,215 mydb.py[line: 65] INFO: query：INSERT INTO `website_ui_test_report_for_case_step`(execution_num, plan_id, case_id, step_id, `order`, page, object, exec_operation, input_params, output_params, assert_type, check_pattern, run_times, try_for_failure, run_result, remark, run_time, run_id) VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)  data：('1686128056', '1', 2, 1, 1, 'test_ui->登录页面', '账号输入', '输入', 'zx1', '', '', '', 1, 1, '成功', '', '2023-06-07 16:54:20', 0)
+2023-06-07 16:54:20,304 test_case.py[line: 67] INFO: ======================开始运行测试步骤：第 2 步======================
+2023-06-07 16:54:20,304 test_case.py[line: 68] INFO: 所属用例：ID2-登录测试
+2023-06-07 16:54:20,304 test_case.py[line: 69] INFO: 所属用例ID：2
+2023-06-07 16:54:20,305 test_case.py[line: 70] INFO: 步骤ID：4
+2023-06-07 16:54:20,305 test_case.py[line: 71] INFO: 步骤类型：操作系统函数
+2023-06-07 16:54:20,306 test_case.py[line: 72] INFO: 操作对象：死等待
+2023-06-07 16:54:20,306 test_case.py[line: 73] INFO: 所在页面：--
+2023-06-07 16:54:20,306 test_case.py[line: 74] INFO: 执行操作：CALL
+2023-06-07 16:54:20,306 test_case.py[line: 75] INFO: 输入参数：20
+2023-06-07 16:54:20,306 test_case.py[line: 76] INFO: 断言类型：
+2023-06-07 16:54:20,307 test_case.py[line: 77] INFO: 断言模式：
+
+2023-06-07 16:54:40,308 test_case_step.py[line: 78] INFO: ======================正在记录用例步骤运行结果到测试报告-用例步骤执行明细表======================
+2023-06-07 16:54:40,308 mydb.py[line: 65] INFO: query：INSERT INTO `website_ui_test_report_for_case_step`(execution_num, plan_id, case_id, step_id, `order`, page, object, exec_operation, input_params, output_params, assert_type, check_pattern, run_times, try_for_failure, run_result, remark, run_time, run_id) VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)  data：('1686128056', '1', 2, 4, 2, '--', '死等待', 'CALL', '20', '', '', '', 1, 1, '成功', '', '2023-06-07 16:54:20', 0)
+2023-06-07 16:54:40,368 test_case.py[line: 67] INFO: ======================开始运行测试步骤：第 3 步======================
+2023-06-07 16:54:40,369 test_case.py[line: 68] INFO: 所属用例：ID2-登录测试
+2023-06-07 16:54:40,371 test_case.py[line: 69] INFO: 所属用例ID：2
+2023-06-07 16:54:40,372 test_case.py[line: 70] INFO: 步骤ID：2
+2023-06-07 16:54:40,374 test_case.py[line: 71] INFO: 步骤类型：操作页面元素
+2023-06-07 16:54:40,376 test_case.py[line: 72] INFO: 操作对象：登录按钮
+2023-06-07 16:54:40,387 test_case.py[line: 73] INFO: 所在页面：test_ui->登录页面
+2023-06-07 16:54:40,389 test_case.py[line: 74] INFO: 执行操作：点击
+2023-06-07 16:54:40,390 test_case.py[line: 75] INFO: 输入参数：
+2023-06-07 16:54:40,392 test_case.py[line: 76] INFO: 断言类型：
+2023-06-07 16:54:40,393 test_case.py[line: 77] INFO: 断言模式：
+
+2023-06-07 16:54:40,398 test_case_step.py[line: 41] INFO: 正在查找页面元素选择器
+2023-06-07 16:54:40,403 mydb.py[line: 96] INFO: query：SELECT selector1, selector2 FROM `website_page_element` WHERE  id = %s  data：(2,)
+2023-06-07 16:54:40,406 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT selector1, selector2 FROM `website_page_element` WHERE  id = 2
+2023-06-07 16:54:40,411 test_case_step.py[line: 46] INFO: 正在运行第1次
+2023-06-07 16:54:40,412 seleniumutil.py[line: 362] INFO: 正在根据元素定位器：XPATH=//*[@id='submitA']/img查找元素
+2023-06-07 16:54:40,415 seleniumutil.py[line: 372] INFO: 查找元素采用的适配器：xpath
+2023-06-07 16:54:40,416 seleniumutil.py[line: 373] INFO: 查找元素采用的选择器：//*[@id='submitA']/img
+2023-06-07 16:54:40,417 seleniumutil.py[line: 383] INFO: find_element_by_xpath：//*[@id='submitA']/img
+2023-06-07 16:54:40,477 test_case_step.py[line: 105] INFO: 找到元素：<selenium.webdriver.remote.webelement.WebElement (session="083f6c5b6659c677eccf90e1abe6507f", element="DCFBE2248B53C5B3F1473A4320543E11_element_9")>
+2023-06-07 16:54:40,538 test_case_step.py[line: 157] INFO: 点击操作成功
+2023-06-07 16:54:40,538 test_case_step.py[line: 50] INFO: 运行成功
+2023-06-07 16:54:40,539 test_case_step.py[line: 46] INFO: 正在运行第2次
+2023-06-07 16:54:40,539 seleniumutil.py[line: 362] INFO: 正在根据元素定位器：XPATH=//*[@id='submitA']/img查找元素
+2023-06-07 16:54:40,539 seleniumutil.py[line: 372] INFO: 查找元素采用的适配器：xpath
+2023-06-07 16:54:40,540 seleniumutil.py[line: 373] INFO: 查找元素采用的选择器：//*[@id='submitA']/img
+2023-06-07 16:54:40,541 seleniumutil.py[line: 383] INFO: find_element_by_xpath：//*[@id='submitA']/img
+2023-06-07 16:54:40,568 test_case_step.py[line: 105] INFO: 找到元素：<selenium.webdriver.remote.webelement.WebElement (session="083f6c5b6659c677eccf90e1abe6507f", element="DCFBE2248B53C5B3F1473A4320543E11_element_9")>
+2023-06-07 16:54:40,597 test_case_step.py[line: 157] INFO: 点击操作成功
+2023-06-07 16:54:40,597 test_case_step.py[line: 50] INFO: 运行成功
+2023-06-07 16:54:40,597 test_case_step.py[line: 78] INFO: ======================正在记录用例步骤运行结果到测试报告-用例步骤执行明细表======================
+2023-06-07 16:54:40,598 mydb.py[line: 65] INFO: query：INSERT INTO `website_ui_test_report_for_case_step`(execution_num, plan_id, case_id, step_id, `order`, page, object, exec_operation, input_params, output_params, assert_type, check_pattern, run_times, try_for_failure, run_result, remark, run_time, run_id) VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)  data：('1686128056', '1', 2, 2, 3, 'test_ui->登录页面', '登录按钮', '点击', '', '', '', '', 1, 1, '成功', '', '2023-06-07 16:54:40', 0)
+2023-06-07 16:54:40,718 test_case.py[line: 67] INFO: ======================开始运行测试步骤：第 4 步======================
+2023-06-07 16:54:40,719 test_case.py[line: 68] INFO: 所属用例：ID2-登录测试
+2023-06-07 16:54:40,720 test_case.py[line: 69] INFO: 所属用例ID：2
+2023-06-07 16:54:40,721 test_case.py[line: 70] INFO: 步骤ID：3
+2023-06-07 16:54:40,722 test_case.py[line: 71] INFO: 步骤类型：操作系统函数
+2023-06-07 16:54:40,723 test_case.py[line: 72] INFO: 操作对象：智能等待
+2023-06-07 16:54:40,724 test_case.py[line: 73] INFO: 所在页面：--
+2023-06-07 16:54:40,725 test_case.py[line: 74] INFO: 执行操作：CALL
+2023-06-07 16:54:40,725 test_case.py[line: 75] INFO: 输入参数：2
+2023-06-07 16:54:40,726 test_case.py[line: 76] INFO: 断言类型：
+2023-06-07 16:54:40,727 test_case.py[line: 77] INFO: 断言模式：
+
+2023-06-07 16:54:40,730 test_case_step.py[line: 78] INFO: ======================正在记录用例步骤运行结果到测试报告-用例步骤执行明细表======================
+2023-06-07 16:54:40,731 mydb.py[line: 65] INFO: query：INSERT INTO `website_ui_test_report_for_case_step`(execution_num, plan_id, case_id, step_id, `order`, page, object, exec_operation, input_params, output_params, assert_type, check_pattern, run_times, try_for_failure, run_result, remark, run_time, run_id) VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)  data：('1686128056', '1', 2, 3, 4, '--', '智能等待', 'CALL', '2', '', '', '', 1, 1, '成功', '', '2023-06-07 16:54:40', 0)
+2023-06-07 16:54:40,810 test_case.py[line: 114] INFO: 正在计算运行耗时
+2023-06-07 16:54:40,811 test_case.py[line: 120] INFO: 正在记录用例运行结果到测试报告-用例执行明细表
+2023-06-07 16:54:40,812 mydb.py[line: 65] INFO: query：INSERT INTO `website_ui_test_report_for_case`(execution_num, plan_id, case_id, case_path, case_name, run_result, remark, run_time, time_took) VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s)  data：('1686128056', '1', 2, 'test_ui', 'ID2-登录测试', '成功', '', '2023-06-07 16:54:20', '0天 0小时 0分 20秒')
+2023-06-07 16:54:43,130 test_plan.py[line: 99] INFO: 测试用例执行完毕，正在更新测试报告-测试概况表
+2023-06-07 16:54:43,131 test_report.py[line: 14] INFO: 正在查询运行状态为：成功的用例记录数
+2023-06-07 16:54:43,135 mydb.py[line: 96] INFO: query：SELECT COUNT(id) FROM `website_ui_test_report_for_case` WHERE run_result = '%s' and plan_id = %s AND execution_num =%s  data：('成功', '1', '1686128056')
+2023-06-07 16:54:43,138 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT COUNT(id) FROM `website_ui_test_report_for_case` WHERE run_result = '成功' and plan_id = 1 AND execution_num =1686128056
+2023-06-07 16:54:43,144 test_report.py[line: 14] INFO: 正在查询运行状态为：失败的用例记录数
+2023-06-07 16:54:43,146 mydb.py[line: 96] INFO: query：SELECT COUNT(id) FROM `website_ui_test_report_for_case` WHERE run_result = '%s' and plan_id = %s AND execution_num =%s  data：('失败', '1', '1686128056')
+2023-06-07 16:54:43,154 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT COUNT(id) FROM `website_ui_test_report_for_case` WHERE run_result = '失败' and plan_id = 1 AND execution_num =1686128056
+2023-06-07 16:54:43,160 test_report.py[line: 14] INFO: 正在查询运行状态为：阻塞的用例记录数
+2023-06-07 16:54:43,161 mydb.py[line: 96] INFO: query：SELECT COUNT(id) FROM `website_ui_test_report_for_case` WHERE run_result = '%s' and plan_id = %s AND execution_num =%s  data：('阻塞', '1', '1686128056')
+2023-06-07 16:54:43,164 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT COUNT(id) FROM `website_ui_test_report_for_case` WHERE run_result = '阻塞' and plan_id = 1 AND execution_num =1686128056
+2023-06-07 16:54:43,169 mydb.py[line: 81] INFO: update_query：UPDATE `website_ui_test_report_for_summary` SET end_time='2023-06-07 16:54:43', time_took='0天 0小时 0分 27秒', case_total_num=1, case_pass_num=1, case_fail_num=0, case_block_num=0, remark='' WHERE execution_num='1686128056' AND plan_id=1
+2023-06-07 16:54:43,260 running_plan.py[line: 83] INFO: 正在释放资源
+2023-06-07 16:54:43,261 running_plan.py[line: 84] INFO: 正在断开与项目关联的数据库连接
+2023-06-07 16:54:43,262 running_plan.py[line: 90] INFO: 正在清理与项目关联的全局变量
+2023-06-07 16:54:43,262 main.py[line: 54] INFO: 执行成功，正在更新数据库运行计划的运行状态
+2023-06-07 16:54:43,263 mydb.py[line: 81] INFO: update_query：UPDATE `website_running_plan` SET running_status ='运行成功', remark='' WHERE running_plan_num= 1686125776140380
+2023-06-07 17:00:29,597 main.py[line: 26] INFO: 执行当前脚本的Python版本：3.9.5
+2023-06-07 17:00:29,599 main.py[line: 28] INFO: 当前运行模式为：rop
+2023-06-07 17:00:29,599 main.py[line: 31] INFO: 当前运行计划编号为：1686125776140380
+2023-06-07 17:00:29,600 main.py[line: 41] INFO: 正在查询运行计划相关信息
+2023-06-07 17:00:29,602 mydb.py[line: 96] INFO: query：SELECT running_plan_name,project_id, project_name, plan_name, plan_id, valid_flag FROM `website_running_plan` WHERE running_plan_num =%s  data：('1686125776140380',)
+2023-06-07 17:00:29,603 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT running_plan_name,project_id, project_name, plan_name, plan_id, valid_flag FROM `website_running_plan` WHERE running_plan_num =1686125776140380
+2023-06-07 17:00:29,606 main.py[line: 48] INFO: 待运行项目：名称：test_ui，ID：1，关联的测试计划有：测试计划1
+2023-06-07 17:00:29,607 main.py[line: 51] INFO: ======================开始执行运行计划[名称：测试运行计划01]======================
+2023-06-07 17:00:29,608 running_plan.py[line: 24] INFO: 正在查询项目[ID：1,名称：test_ui]相关信息
+2023-06-07 17:00:29,609 mydb.py[line: 96] INFO: query：SELECT home_page, environment_id, valid_flag FROM `website_ui_project_setting` WHERE id = %s  data：(1,)
+2023-06-07 17:00:29,610 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT home_page, environment_id, valid_flag FROM `website_ui_project_setting` WHERE id = 1
+2023-06-07 17:00:29,613 running_plan.py[line: 31] INFO: 正在查询与项目关联的数据库信息
+2023-06-07 17:00:29,613 mydb.py[line: 124] INFO: query：SELECT db_type, db_alias, db_name, db_host, db_port, db_user, db_passwd FROM `website_database_setting` WHERE  locate('UI1', project_id) != 0  AND environment_id= '1'  data：
+2023-06-07 17:00:29,617 running_plan.py[line: 45] INFO: 正在查询与项目关联的全局变量
+2023-06-07 17:00:29,618 mydb.py[line: 124] INFO: query：SELECT `name`, `value` FROM `website_global_variable_setting` WHERE  project_type='UI项目' AND locate('%s', project_id) != 0 AND locate('%s', env_id) != 0   data：(1, 1)
+2023-06-07 17:00:29,622 running_plan.py[line: 60] INFO: ======================开始运行测试项目[名称：test_ui, ID：1]======================
+2023-06-07 17:00:29,622 test_project.py[line: 98] INFO: ======================正在同步更新与待运行测试计划关联的所有用例树节点信息======================
+2023-06-07 17:00:29,623 test_project.py[line: 36] INFO: 待运行计划ID列表：['1']
+2023-06-07 17:00:29,624 test_project.py[line: 38] INFO: 正在查询与测试计划关联的用例树节点
+2023-06-07 17:00:29,625 mydb.py[line: 124] INFO: query：SELECT node_id FROM `website_ui_case_tree_test_plan` WHERE plan_id IN (1) GROUP BY node_id  data：
+2023-06-07 17:00:29,628 test_project.py[line: 52] INFO: 正在查找用例树节点信息
+2023-06-07 17:00:29,628 mydb.py[line: 96] INFO: query：SELECT t1.text, t1.parent_id, COUNT(t2.id) FROM `website_ui_case_tree` AS t1 LEFT JOIN `website_ui_case_tree` AS t2 ON t2.parent_id = t1.id WHERE t1.id = %s  data：(1,)
+2023-06-07 17:00:29,629 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT t1.text, t1.parent_id, COUNT(t2.id) FROM `website_ui_case_tree` AS t1 LEFT JOIN `website_ui_case_tree` AS t2 ON t2.parent_id = t1.id WHERE t1.id = 1
+2023-06-07 17:00:29,635 mydb.py[line: 96] INFO: query：SELECT parent_id, text FROM `website_ui_case_tree` WHERE id = %s  data：(0,)
+2023-06-07 17:00:29,636 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT parent_id, text FROM `website_ui_case_tree` WHERE id = 0
+2023-06-07 17:00:29,640 test_project.py[line: 64] INFO: 正在更新测试计划用例树节点关联表记录
+2023-06-07 17:00:29,640 mydb.py[line: 81] INFO: update_query：UPDATE website_ui_case_tree_test_plan SET node_path='', sub_node_num=1 WHERE plan_id IN (1) AND node_id = 1
+2023-06-07 17:00:29,644 test_project.py[line: 52] INFO: 正在查找用例树节点信息
+2023-06-07 17:00:29,644 mydb.py[line: 96] INFO: query：SELECT t1.text, t1.parent_id, COUNT(t2.id) FROM `website_ui_case_tree` AS t1 LEFT JOIN `website_ui_case_tree` AS t2 ON t2.parent_id = t1.id WHERE t1.id = %s  data：(2,)
+2023-06-07 17:00:29,645 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT t1.text, t1.parent_id, COUNT(t2.id) FROM `website_ui_case_tree` AS t1 LEFT JOIN `website_ui_case_tree` AS t2 ON t2.parent_id = t1.id WHERE t1.id = 2
+2023-06-07 17:00:29,650 mydb.py[line: 96] INFO: query：SELECT parent_id, text FROM `website_ui_case_tree` WHERE id = %s  data：(1,)
+2023-06-07 17:00:29,651 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT parent_id, text FROM `website_ui_case_tree` WHERE id = 1
+2023-06-07 17:00:29,655 mydb.py[line: 96] INFO: query：SELECT parent_id, text FROM `website_ui_case_tree` WHERE id = %s  data：(0,)
+2023-06-07 17:00:29,656 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT parent_id, text FROM `website_ui_case_tree` WHERE id = 0
+2023-06-07 17:00:29,659 test_project.py[line: 64] INFO: 正在更新测试计划用例树节点关联表记录
+2023-06-07 17:00:29,660 mydb.py[line: 81] INFO: update_query：UPDATE website_ui_case_tree_test_plan SET node_path='test_ui', sub_node_num=0 WHERE plan_id IN (1) AND node_id = 2
+2023-06-07 17:00:29,663 test_project.py[line: 104] INFO: 同步更新与待运行测试计划关联的所有用例树节点信息成功
+2023-06-07 17:00:29,663 test_project.py[line: 107] INFO: 正在查询测试计划[ID：1]相关信息
+2023-06-07 17:00:29,663 mydb.py[line: 96] INFO: query：SELECT plan_name, browsers, valid_flag FROM `website_ui_test_plan` WHERE id = %s  data：('1',)
+2023-06-07 17:00:29,664 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT plan_name, browsers, valid_flag FROM `website_ui_test_plan` WHERE id = 1
+2023-06-07 17:00:29,667 test_project.py[line: 113] INFO: ======================开始运行测试计划[名称：测试计划1, ID：1]======================
+2023-06-07 17:00:29,667 test_plan.py[line: 31] INFO: 计划运行的浏览器有：['谷歌']
+2023-06-07 17:00:29,668 test_plan.py[line: 33] INFO: 正在查询测试计划关联的测试用例
+2023-06-07 17:00:29,668 mydb.py[line: 124] INFO: query：SELECT node_id, node_path, node_name FROM `website_ui_case_tree_test_plan` WHERE plan_id = %s AND sub_node_num = 0 ORDER BY `order` ASC  data：('1',)
+2023-06-07 17:00:29,672 test_plan.py[line: 52] INFO: 正在往测试报告-测试概况插入计划执行概要记录
+2023-06-07 17:00:29,675 mydb.py[line: 65] INFO: query：INSERT INTO `website_ui_test_report_for_summary`(execution_num, project_id, plan_id, project_name, plan_name, browser,start_time, end_time, time_took, case_total_num, case_pass_num, case_fail_num, case_block_num, remark) VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s,%s, %s, %s, %s)  data：('1686128429', 1, '1', 'test_ui', '测试计划1', '谷歌', '2023-06-07 17:00:29', '', '', 0, 0, 0, 0, '')
+2023-06-07 17:00:29,730 test_plan.py[line: 55] INFO: 正在获取浏览器驱动
+2023-06-07 17:00:31,360 test_plan.py[line: 65] INFO: 正在打开项目主页：http://192.168.20.157:1003/portal/main_new.do
+2023-06-07 17:00:33,208 test_plan.py[line: 70] INFO: ======================正在【谷歌】浏览器下运行测试用例======================
+2023-06-07 17:00:33,209 test_plan.py[line: 74] INFO: ======================开始运行测试用例[名称：ID2-登录测试, ID:2]======================
+2023-06-07 17:00:33,212 test_case.py[line: 29] INFO: 正在查询测试用例[ID：2, 名称：ID2-登录测试]关联的测试步骤
+2023-06-07 17:00:33,213 mydb.py[line: 124] INFO: query：SELECT id, `order`, object_type, page_name, object, exec_operation, input_params, output_params,assert_type, assert_pattern, run_times, try_for_failure, object_id FROM `website_ui_test_case_step` WHERE case_id=%s AND status='启用' ORDER BY `order` ASC  data：(2,)
+2023-06-07 17:00:33,217 test_case.py[line: 67] INFO: ======================开始运行测试步骤：第 1 步======================
+2023-06-07 17:00:33,217 test_case.py[line: 68] INFO: 所属用例：ID2-登录测试
+2023-06-07 17:00:33,218 test_case.py[line: 69] INFO: 所属用例ID：2
+2023-06-07 17:00:33,219 test_case.py[line: 70] INFO: 步骤ID：1
+2023-06-07 17:00:33,220 test_case.py[line: 71] INFO: 步骤类型：操作页面元素
+2023-06-07 17:00:33,220 test_case.py[line: 72] INFO: 操作对象：账号输入
+2023-06-07 17:00:33,221 test_case.py[line: 73] INFO: 所在页面：test_ui->登录页面
+2023-06-07 17:00:33,222 test_case.py[line: 74] INFO: 执行操作：输入
+2023-06-07 17:00:33,223 test_case.py[line: 75] INFO: 输入参数：zx1
+2023-06-07 17:00:33,223 test_case.py[line: 76] INFO: 断言类型：
+2023-06-07 17:00:33,224 test_case.py[line: 77] INFO: 断言模式：
+
+2023-06-07 17:00:33,226 test_case_step.py[line: 41] INFO: 正在查找页面元素选择器
+2023-06-07 17:00:33,226 mydb.py[line: 96] INFO: query：SELECT selector1, selector2 FROM `website_page_element` WHERE  id = %s  data：(2,)
+2023-06-07 17:00:33,227 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT selector1, selector2 FROM `website_page_element` WHERE  id = 2
+2023-06-07 17:00:33,231 test_case_step.py[line: 46] INFO: 正在运行第1次
+2023-06-07 17:00:33,231 seleniumutil.py[line: 362] INFO: 正在根据元素定位器：XPATH=//*[@id='submitA']/img查找元素
+2023-06-07 17:00:33,232 seleniumutil.py[line: 372] INFO: 查找元素采用的适配器：xpath
+2023-06-07 17:00:33,232 seleniumutil.py[line: 373] INFO: 查找元素采用的选择器：//*[@id='submitA']/img
+2023-06-07 17:00:33,233 seleniumutil.py[line: 383] INFO: find_element_by_xpath：//*[@id='submitA']/img
+2023-06-07 17:00:33,282 test_case_step.py[line: 105] INFO: 找到元素：<selenium.webdriver.remote.webelement.WebElement (session="9701ed9d5d751c8f02b33aa21d6800d1", element="30A35364816A8183105DEC3F08370C87_element_9")>
+2023-06-07 17:00:33,329 test_case_step.py[line: 132] ERROR: 执行输入操作出错:Message: element not interactable
+  (Session info: chrome=113.0.5672.129)
+Stacktrace:
+Backtrace:
+	GetHandleVerifier [0x010A8893+48451]
+	(No symbol) [0x0103B8A1]
+	(No symbol) [0x00F44F20]
+	(No symbol) [0x00F6CB96]
+	(No symbol) [0x00F6C401]
+	(No symbol) [0x00F8A2BC]
+	(No symbol) [0x00F69586]
+	(No symbol) [0x00F8A614]
+	(No symbol) [0x00F9C482]
+	(No symbol) [0x00F8A0B6]
+	(No symbol) [0x00F67E08]
+	(No symbol) [0x00F68F2D]
+	GetHandleVerifier [0x01308E3A+2540266]
+	GetHandleVerifier [0x01348959+2801161]
+	GetHandleVerifier [0x0134295C+2776588]
+	GetHandleVerifier [0x01132280+612144]
+	(No symbol) [0x01044F6C]
+	(No symbol) [0x010411D8]
+	(No symbol) [0x010412BB]
+	(No symbol) [0x01034857]
+	BaseThreadInitThunk [0x75FD05C9+25]
+	RtlGetAppContainerNamedObjectPath [0x770A77AD+237]
+	RtlGetAppContainerNamedObjectPath [0x770A777D+189]
+
+2023-06-07 17:00:33,332 test_case_step.py[line: 54] WARNING: 运行失败：Message: element not interactable
+  (Session info: chrome=113.0.5672.129)
+Stacktrace:
+Backtrace:
+	GetHandleVerifier [0x010A8893+48451]
+	(No symbol) [0x0103B8A1]
+	(No symbol) [0x00F44F20]
+	(No symbol) [0x00F6CB96]
+	(No symbol) [0x00F6C401]
+	(No symbol) [0x00F8A2BC]
+	(No symbol) [0x00F69586]
+	(No symbol) [0x00F8A614]
+	(No symbol) [0x00F9C482]
+	(No symbol) [0x00F8A0B6]
+	(No symbol) [0x00F67E08]
+	(No symbol) [0x00F68F2D]
+	GetHandleVerifier [0x01308E3A+2540266]
+	GetHandleVerifier [0x01348959+2801161]
+	GetHandleVerifier [0x0134295C+2776588]
+	GetHandleVerifier [0x01132280+612144]
+	(No symbol) [0x01044F6C]
+	(No symbol) [0x010411D8]
+	(No symbol) [0x010412BB]
+	(No symbol) [0x01034857]
+	BaseThreadInitThunk [0x75FD05C9+25]
+	RtlGetAppContainerNamedObjectPath [0x770A77AD+237]
+	RtlGetAppContainerNamedObjectPath [0x770A777D+189]
+，正在进行第1次重试
+2023-06-07 17:00:33,334 seleniumutil.py[line: 362] INFO: 正在根据元素定位器：XPATH=//*[@id='submitA']/img查找元素
+2023-06-07 17:00:33,334 seleniumutil.py[line: 372] INFO: 查找元素采用的适配器：xpath
+2023-06-07 17:00:33,334 seleniumutil.py[line: 373] INFO: 查找元素采用的选择器：//*[@id='submitA']/img
+2023-06-07 17:00:33,335 seleniumutil.py[line: 383] INFO: find_element_by_xpath：//*[@id='submitA']/img
+2023-06-07 17:00:33,354 test_case_step.py[line: 105] INFO: 找到元素：<selenium.webdriver.remote.webelement.WebElement (session="9701ed9d5d751c8f02b33aa21d6800d1", element="30A35364816A8183105DEC3F08370C87_element_9")>
+2023-06-07 17:00:33,382 test_case_step.py[line: 132] ERROR: 执行输入操作出错:Message: element not interactable
+  (Session info: chrome=113.0.5672.129)
+Stacktrace:
+Backtrace:
+	GetHandleVerifier [0x010A8893+48451]
+	(No symbol) [0x0103B8A1]
+	(No symbol) [0x00F44F20]
+	(No symbol) [0x00F6CB96]
+	(No symbol) [0x00F6C401]
+	(No symbol) [0x00F8A2BC]
+	(No symbol) [0x00F69586]
+	(No symbol) [0x00F8A614]
+	(No symbol) [0x00F9C482]
+	(No symbol) [0x00F8A0B6]
+	(No symbol) [0x00F67E08]
+	(No symbol) [0x00F68F2D]
+	GetHandleVerifier [0x01308E3A+2540266]
+	GetHandleVerifier [0x01348959+2801161]
+	GetHandleVerifier [0x0134295C+2776588]
+	GetHandleVerifier [0x01132280+612144]
+	(No symbol) [0x01044F6C]
+	(No symbol) [0x010411D8]
+	(No symbol) [0x010412BB]
+	(No symbol) [0x01034857]
+	BaseThreadInitThunk [0x75FD05C9+25]
+	RtlGetAppContainerNamedObjectPath [0x770A77AD+237]
+	RtlGetAppContainerNamedObjectPath [0x770A777D+189]
+
+2023-06-07 17:00:33,383 test_case_step.py[line: 54] WARNING: 运行失败：Message: element not interactable
+  (Session info: chrome=113.0.5672.129)
+Stacktrace:
+Backtrace:
+	GetHandleVerifier [0x010A8893+48451]
+	(No symbol) [0x0103B8A1]
+	(No symbol) [0x00F44F20]
+	(No symbol) [0x00F6CB96]
+	(No symbol) [0x00F6C401]
+	(No symbol) [0x00F8A2BC]
+	(No symbol) [0x00F69586]
+	(No symbol) [0x00F8A614]
+	(No symbol) [0x00F9C482]
+	(No symbol) [0x00F8A0B6]
+	(No symbol) [0x00F67E08]
+	(No symbol) [0x00F68F2D]
+	GetHandleVerifier [0x01308E3A+2540266]
+	GetHandleVerifier [0x01348959+2801161]
+	GetHandleVerifier [0x0134295C+2776588]
+	GetHandleVerifier [0x01132280+612144]
+	(No symbol) [0x01044F6C]
+	(No symbol) [0x010411D8]
+	(No symbol) [0x010412BB]
+	(No symbol) [0x01034857]
+	BaseThreadInitThunk [0x75FD05C9+25]
+	RtlGetAppContainerNamedObjectPath [0x770A77AD+237]
+	RtlGetAppContainerNamedObjectPath [0x770A777D+189]
+，正在进行第2次重试
+2023-06-07 17:00:33,385 test_case_step.py[line: 46] INFO: 正在运行第2次
+2023-06-07 17:00:33,385 seleniumutil.py[line: 362] INFO: 正在根据元素定位器：XPATH=//*[@id='submitA']/img查找元素
+2023-06-07 17:00:33,385 seleniumutil.py[line: 372] INFO: 查找元素采用的适配器：xpath
+2023-06-07 17:00:33,386 seleniumutil.py[line: 373] INFO: 查找元素采用的选择器：//*[@id='submitA']/img
+2023-06-07 17:00:33,386 seleniumutil.py[line: 383] INFO: find_element_by_xpath：//*[@id='submitA']/img
+2023-06-07 17:00:33,401 test_case_step.py[line: 105] INFO: 找到元素：<selenium.webdriver.remote.webelement.WebElement (session="9701ed9d5d751c8f02b33aa21d6800d1", element="30A35364816A8183105DEC3F08370C87_element_9")>
+2023-06-07 17:00:33,429 test_case_step.py[line: 132] ERROR: 执行输入操作出错:Message: element not interactable
+  (Session info: chrome=113.0.5672.129)
+Stacktrace:
+Backtrace:
+	GetHandleVerifier [0x010A8893+48451]
+	(No symbol) [0x0103B8A1]
+	(No symbol) [0x00F44F20]
+	(No symbol) [0x00F6CB96]
+	(No symbol) [0x00F6C401]
+	(No symbol) [0x00F8A2BC]
+	(No symbol) [0x00F69586]
+	(No symbol) [0x00F8A614]
+	(No symbol) [0x00F9C482]
+	(No symbol) [0x00F8A0B6]
+	(No symbol) [0x00F67E08]
+	(No symbol) [0x00F68F2D]
+	GetHandleVerifier [0x01308E3A+2540266]
+	GetHandleVerifier [0x01348959+2801161]
+	GetHandleVerifier [0x0134295C+2776588]
+	GetHandleVerifier [0x01132280+612144]
+	(No symbol) [0x01044F6C]
+	(No symbol) [0x010411D8]
+	(No symbol) [0x010412BB]
+	(No symbol) [0x01034857]
+	BaseThreadInitThunk [0x75FD05C9+25]
+	RtlGetAppContainerNamedObjectPath [0x770A77AD+237]
+	RtlGetAppContainerNamedObjectPath [0x770A777D+189]
+
+2023-06-07 17:00:33,430 test_case_step.py[line: 54] WARNING: 运行失败：Message: element not interactable
+  (Session info: chrome=113.0.5672.129)
+Stacktrace:
+Backtrace:
+	GetHandleVerifier [0x010A8893+48451]
+	(No symbol) [0x0103B8A1]
+	(No symbol) [0x00F44F20]
+	(No symbol) [0x00F6CB96]
+	(No symbol) [0x00F6C401]
+	(No symbol) [0x00F8A2BC]
+	(No symbol) [0x00F69586]
+	(No symbol) [0x00F8A614]
+	(No symbol) [0x00F9C482]
+	(No symbol) [0x00F8A0B6]
+	(No symbol) [0x00F67E08]
+	(No symbol) [0x00F68F2D]
+	GetHandleVerifier [0x01308E3A+2540266]
+	GetHandleVerifier [0x01348959+2801161]
+	GetHandleVerifier [0x0134295C+2776588]
+	GetHandleVerifier [0x01132280+612144]
+	(No symbol) [0x01044F6C]
+	(No symbol) [0x010411D8]
+	(No symbol) [0x010412BB]
+	(No symbol) [0x01034857]
+	BaseThreadInitThunk [0x75FD05C9+25]
+	RtlGetAppContainerNamedObjectPath [0x770A77AD+237]
+	RtlGetAppContainerNamedObjectPath [0x770A777D+189]
+，正在进行第1次重试
+2023-06-07 17:00:33,432 seleniumutil.py[line: 362] INFO: 正在根据元素定位器：XPATH=//*[@id='submitA']/img查找元素
+2023-06-07 17:00:33,433 seleniumutil.py[line: 372] INFO: 查找元素采用的适配器：xpath
+2023-06-07 17:00:33,433 seleniumutil.py[line: 373] INFO: 查找元素采用的选择器：//*[@id='submitA']/img
+2023-06-07 17:00:33,433 seleniumutil.py[line: 383] INFO: find_element_by_xpath：//*[@id='submitA']/img
+2023-06-07 17:00:33,447 test_case_step.py[line: 105] INFO: 找到元素：<selenium.webdriver.remote.webelement.WebElement (session="9701ed9d5d751c8f02b33aa21d6800d1", element="30A35364816A8183105DEC3F08370C87_element_9")>
+2023-06-07 17:00:33,474 test_case_step.py[line: 132] ERROR: 执行输入操作出错:Message: element not interactable
+  (Session info: chrome=113.0.5672.129)
+Stacktrace:
+Backtrace:
+	GetHandleVerifier [0x010A8893+48451]
+	(No symbol) [0x0103B8A1]
+	(No symbol) [0x00F44F20]
+	(No symbol) [0x00F6CB96]
+	(No symbol) [0x00F6C401]
+	(No symbol) [0x00F8A2BC]
+	(No symbol) [0x00F69586]
+	(No symbol) [0x00F8A614]
+	(No symbol) [0x00F9C482]
+	(No symbol) [0x00F8A0B6]
+	(No symbol) [0x00F67E08]
+	(No symbol) [0x00F68F2D]
+	GetHandleVerifier [0x01308E3A+2540266]
+	GetHandleVerifier [0x01348959+2801161]
+	GetHandleVerifier [0x0134295C+2776588]
+	GetHandleVerifier [0x01132280+612144]
+	(No symbol) [0x01044F6C]
+	(No symbol) [0x010411D8]
+	(No symbol) [0x010412BB]
+	(No symbol) [0x01034857]
+	BaseThreadInitThunk [0x75FD05C9+25]
+	RtlGetAppContainerNamedObjectPath [0x770A77AD+237]
+	RtlGetAppContainerNamedObjectPath [0x770A777D+189]
+
+2023-06-07 17:00:33,476 test_case_step.py[line: 54] WARNING: 运行失败：Message: element not interactable
+  (Session info: chrome=113.0.5672.129)
+Stacktrace:
+Backtrace:
+	GetHandleVerifier [0x010A8893+48451]
+	(No symbol) [0x0103B8A1]
+	(No symbol) [0x00F44F20]
+	(No symbol) [0x00F6CB96]
+	(No symbol) [0x00F6C401]
+	(No symbol) [0x00F8A2BC]
+	(No symbol) [0x00F69586]
+	(No symbol) [0x00F8A614]
+	(No symbol) [0x00F9C482]
+	(No symbol) [0x00F8A0B6]
+	(No symbol) [0x00F67E08]
+	(No symbol) [0x00F68F2D]
+	GetHandleVerifier [0x01308E3A+2540266]
+	GetHandleVerifier [0x01348959+2801161]
+	GetHandleVerifier [0x0134295C+2776588]
+	GetHandleVerifier [0x01132280+612144]
+	(No symbol) [0x01044F6C]
+	(No symbol) [0x010411D8]
+	(No symbol) [0x010412BB]
+	(No symbol) [0x01034857]
+	BaseThreadInitThunk [0x75FD05C9+25]
+	RtlGetAppContainerNamedObjectPath [0x770A77AD+237]
+	RtlGetAppContainerNamedObjectPath [0x770A777D+189]
+，正在进行第2次重试
+2023-06-07 17:00:33,478 test_case_step.py[line: 78] INFO: ======================正在记录用例步骤运行结果到测试报告-用例步骤执行明细表======================
+2023-06-07 17:00:33,478 mydb.py[line: 65] INFO: query：INSERT INTO `website_ui_test_report_for_case_step`(execution_num, plan_id, case_id, step_id, `order`, page, object, exec_operation, input_params, output_params, assert_type, check_pattern, run_times, try_for_failure, run_result, remark, run_time, run_id) VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)  data：('1686128429', '1', 2, 1, 1, 'test_ui->登录页面', '账号输入', '输入', 'zx1', '', '', '', 1, 1, '失败', '步骤运行失败：Message: element not interactable\n  (Session info: chrome=113.0.5672.129)\nStacktrace:\nBacktrace:\n\tGetHandleVerifier [0x010A8893+48451]\n\t(No symbol) [0x0103B8A1]\n\t(No symbol) [0x00F44F20]\n\t(No symbol) [0x00F6CB96]\n\t(No symbol) [0x00F6C401]\n\t(No symbol) [0x00F8A2BC]\n\t(No symbol) [0x00F69586]\n\t(No symbol) [0x00F8A614]\n\t(No symbol) [0x00F9C482]\n\t(No symbol) [0x00F8A0B6]\n\t(No symbol) [0x00F67E08]\n\t(No symbol) [0x00F68F2D]\n\tGetHandleVerifier [0x01308E3A+2540266]\n\tGetHandleVerifier [0x01348959+2801161]\n\tGetHandleVerifier [0x0134295C+2776588]\n\tGetHandleVerifier [0x01132280+612144]\n\t(No symbol) [0x01044F6C]\n\t(No symbol) [0x010411D8]\n\t(No symbol) [0x010412BB]\n\t(No symbol) [0x01034857]\n\tBaseThreadInitThunk [0x75FD05C9+25]\n\tRtlGetAppContainerNamedObjectPath [0x770A77AD+237]\n\tRtlGetAppContainerNamedObjectPath [0x770A777D+189]\n', '2023-06-07 17:00:33', 0)
+2023-06-07 17:00:33,482 mydb.py[line: 73] ERROR: 执行数据库插入操作失败：1406 (22001): Data too long for column 'remark' at row 1
+2023-06-07 17:00:33,483 test_report.py[line: 62] ERROR: 往测试报告-测试用例步骤执行明细表插入运行记录失败：1406 (22001): Data too long for column 'remark' at row 1,提前退出程序
+2023-06-07 17:00:33,483 test_case.py[line: 114] INFO: 正在计算运行耗时
+2023-06-07 17:00:33,483 test_case.py[line: 120] INFO: 正在记录用例运行结果到测试报告-用例执行明细表
+2023-06-07 17:00:33,484 mydb.py[line: 65] INFO: query：INSERT INTO `website_ui_test_report_for_case`(execution_num, plan_id, case_id, case_path, case_name, run_result, remark, run_time, time_took) VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s)  data：('1686128429', '1', 2, 'test_ui', 'ID2-登录测试', '阻塞', '没有找到与用例关联的测试步骤', '2023-06-07 17:00:33', '0天 0小时 0分 0秒')
+2023-06-07 17:00:35,769 test_plan.py[line: 99] INFO: 测试用例执行完毕，正在更新测试报告-测试概况表
+2023-06-07 17:00:35,771 test_report.py[line: 14] INFO: 正在查询运行状态为：成功的用例记录数
+2023-06-07 17:00:35,778 mydb.py[line: 96] INFO: query：SELECT COUNT(id) FROM `website_ui_test_report_for_case` WHERE run_result = '%s' and plan_id = %s AND execution_num =%s  data：('成功', '1', '1686128429')
+2023-06-07 17:00:35,779 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT COUNT(id) FROM `website_ui_test_report_for_case` WHERE run_result = '成功' and plan_id = 1 AND execution_num =1686128429
+2023-06-07 17:00:35,784 test_report.py[line: 14] INFO: 正在查询运行状态为：失败的用例记录数
+2023-06-07 17:00:35,784 mydb.py[line: 96] INFO: query：SELECT COUNT(id) FROM `website_ui_test_report_for_case` WHERE run_result = '%s' and plan_id = %s AND execution_num =%s  data：('失败', '1', '1686128429')
+2023-06-07 17:00:35,785 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT COUNT(id) FROM `website_ui_test_report_for_case` WHERE run_result = '失败' and plan_id = 1 AND execution_num =1686128429
+2023-06-07 17:00:35,789 test_report.py[line: 14] INFO: 正在查询运行状态为：阻塞的用例记录数
+2023-06-07 17:00:35,789 mydb.py[line: 96] INFO: query：SELECT COUNT(id) FROM `website_ui_test_report_for_case` WHERE run_result = '%s' and plan_id = %s AND execution_num =%s  data：('阻塞', '1', '1686128429')
+2023-06-07 17:00:35,790 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT COUNT(id) FROM `website_ui_test_report_for_case` WHERE run_result = '阻塞' and plan_id = 1 AND execution_num =1686128429
+2023-06-07 17:00:35,794 mydb.py[line: 81] INFO: update_query：UPDATE `website_ui_test_report_for_summary` SET end_time='2023-06-07 17:00:35', time_took='0天 0小时 0分 6秒', case_total_num=1, case_pass_num=0, case_fail_num=0, case_block_num=1, remark='部分用例运行出错' WHERE execution_num='1686128429' AND plan_id=1
+2023-06-07 17:00:35,866 running_plan.py[line: 83] INFO: 正在释放资源
+2023-06-07 17:00:35,867 running_plan.py[line: 84] INFO: 正在断开与项目关联的数据库连接
+2023-06-07 17:00:35,871 running_plan.py[line: 90] INFO: 正在清理与项目关联的全局变量
+2023-06-07 17:00:35,885 main.py[line: 56] INFO: 执行失败，正在更新数据库运行计划的运行状态
+2023-06-07 17:00:35,902 mydb.py[line: 81] INFO: update_query：UPDATE `website_running_plan` SET running_status ='运行失败', remark='测试计划["1"]运行失败' WHERE running_plan_num= 1686125776140380
+2023-06-07 17:00:53,043 main.py[line: 26] INFO: 执行当前脚本的Python版本：3.9.5
+2023-06-07 17:00:53,044 main.py[line: 28] INFO: 当前运行模式为：rop
+2023-06-07 17:00:53,044 main.py[line: 31] INFO: 当前运行计划编号为：1686125776140380
+2023-06-07 17:00:53,044 main.py[line: 41] INFO: 正在查询运行计划相关信息
+2023-06-07 17:00:53,045 mydb.py[line: 96] INFO: query：SELECT running_plan_name,project_id, project_name, plan_name, plan_id, valid_flag FROM `website_running_plan` WHERE running_plan_num =%s  data：('1686125776140380',)
+2023-06-07 17:00:53,045 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT running_plan_name,project_id, project_name, plan_name, plan_id, valid_flag FROM `website_running_plan` WHERE running_plan_num =1686125776140380
+2023-06-07 17:00:53,048 main.py[line: 48] INFO: 待运行项目：名称：test_ui，ID：1，关联的测试计划有：测试计划1
+2023-06-07 17:00:53,049 main.py[line: 51] INFO: ======================开始执行运行计划[名称：测试运行计划01]======================
+2023-06-07 17:00:53,049 running_plan.py[line: 24] INFO: 正在查询项目[ID：1,名称：test_ui]相关信息
+2023-06-07 17:00:53,049 mydb.py[line: 96] INFO: query：SELECT home_page, environment_id, valid_flag FROM `website_ui_project_setting` WHERE id = %s  data：(1,)
+2023-06-07 17:00:53,049 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT home_page, environment_id, valid_flag FROM `website_ui_project_setting` WHERE id = 1
+2023-06-07 17:00:53,052 running_plan.py[line: 31] INFO: 正在查询与项目关联的数据库信息
+2023-06-07 17:00:53,052 mydb.py[line: 124] INFO: query：SELECT db_type, db_alias, db_name, db_host, db_port, db_user, db_passwd FROM `website_database_setting` WHERE  locate('UI1', project_id) != 0  AND environment_id= '1'  data：
+2023-06-07 17:00:53,055 running_plan.py[line: 45] INFO: 正在查询与项目关联的全局变量
+2023-06-07 17:00:53,056 mydb.py[line: 124] INFO: query：SELECT `name`, `value` FROM `website_global_variable_setting` WHERE  project_type='UI项目' AND locate('%s', project_id) != 0 AND locate('%s', env_id) != 0   data：(1, 1)
+2023-06-07 17:00:53,058 running_plan.py[line: 60] INFO: ======================开始运行测试项目[名称：test_ui, ID：1]======================
+2023-06-07 17:00:53,059 test_project.py[line: 98] INFO: ======================正在同步更新与待运行测试计划关联的所有用例树节点信息======================
+2023-06-07 17:00:53,059 test_project.py[line: 36] INFO: 待运行计划ID列表：['1']
+2023-06-07 17:00:53,059 test_project.py[line: 38] INFO: 正在查询与测试计划关联的用例树节点
+2023-06-07 17:00:53,060 mydb.py[line: 124] INFO: query：SELECT node_id FROM `website_ui_case_tree_test_plan` WHERE plan_id IN (1) GROUP BY node_id  data：
+2023-06-07 17:00:53,062 test_project.py[line: 52] INFO: 正在查找用例树节点信息
+2023-06-07 17:00:53,062 mydb.py[line: 96] INFO: query：SELECT t1.text, t1.parent_id, COUNT(t2.id) FROM `website_ui_case_tree` AS t1 LEFT JOIN `website_ui_case_tree` AS t2 ON t2.parent_id = t1.id WHERE t1.id = %s  data：(1,)
+2023-06-07 17:00:53,063 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT t1.text, t1.parent_id, COUNT(t2.id) FROM `website_ui_case_tree` AS t1 LEFT JOIN `website_ui_case_tree` AS t2 ON t2.parent_id = t1.id WHERE t1.id = 1
+2023-06-07 17:00:53,066 mydb.py[line: 96] INFO: query：SELECT parent_id, text FROM `website_ui_case_tree` WHERE id = %s  data：(0,)
+2023-06-07 17:00:53,066 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT parent_id, text FROM `website_ui_case_tree` WHERE id = 0
+2023-06-07 17:00:53,068 test_project.py[line: 64] INFO: 正在更新测试计划用例树节点关联表记录
+2023-06-07 17:00:53,069 mydb.py[line: 81] INFO: update_query：UPDATE website_ui_case_tree_test_plan SET node_path='', sub_node_num=1 WHERE plan_id IN (1) AND node_id = 1
+2023-06-07 17:00:53,072 test_project.py[line: 52] INFO: 正在查找用例树节点信息
+2023-06-07 17:00:53,072 mydb.py[line: 96] INFO: query：SELECT t1.text, t1.parent_id, COUNT(t2.id) FROM `website_ui_case_tree` AS t1 LEFT JOIN `website_ui_case_tree` AS t2 ON t2.parent_id = t1.id WHERE t1.id = %s  data：(2,)
+2023-06-07 17:00:53,072 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT t1.text, t1.parent_id, COUNT(t2.id) FROM `website_ui_case_tree` AS t1 LEFT JOIN `website_ui_case_tree` AS t2 ON t2.parent_id = t1.id WHERE t1.id = 2
+2023-06-07 17:00:53,075 mydb.py[line: 96] INFO: query：SELECT parent_id, text FROM `website_ui_case_tree` WHERE id = %s  data：(1,)
+2023-06-07 17:00:53,076 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT parent_id, text FROM `website_ui_case_tree` WHERE id = 1
+2023-06-07 17:00:53,078 mydb.py[line: 96] INFO: query：SELECT parent_id, text FROM `website_ui_case_tree` WHERE id = %s  data：(0,)
+2023-06-07 17:00:53,079 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT parent_id, text FROM `website_ui_case_tree` WHERE id = 0
+2023-06-07 17:00:53,081 test_project.py[line: 64] INFO: 正在更新测试计划用例树节点关联表记录
+2023-06-07 17:00:53,082 mydb.py[line: 81] INFO: update_query：UPDATE website_ui_case_tree_test_plan SET node_path='test_ui', sub_node_num=0 WHERE plan_id IN (1) AND node_id = 2
+2023-06-07 17:00:53,084 test_project.py[line: 104] INFO: 同步更新与待运行测试计划关联的所有用例树节点信息成功
+2023-06-07 17:00:53,084 test_project.py[line: 107] INFO: 正在查询测试计划[ID：1]相关信息
+2023-06-07 17:00:53,085 mydb.py[line: 96] INFO: query：SELECT plan_name, browsers, valid_flag FROM `website_ui_test_plan` WHERE id = %s  data：('1',)
+2023-06-07 17:00:53,085 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT plan_name, browsers, valid_flag FROM `website_ui_test_plan` WHERE id = 1
+2023-06-07 17:00:53,088 test_project.py[line: 113] INFO: ======================开始运行测试计划[名称：测试计划1, ID：1]======================
+2023-06-07 17:00:53,088 test_plan.py[line: 31] INFO: 计划运行的浏览器有：['谷歌']
+2023-06-07 17:00:53,089 test_plan.py[line: 33] INFO: 正在查询测试计划关联的测试用例
+2023-06-07 17:00:53,089 mydb.py[line: 124] INFO: query：SELECT node_id, node_path, node_name FROM `website_ui_case_tree_test_plan` WHERE plan_id = %s AND sub_node_num = 0 ORDER BY `order` ASC  data：('1',)
+2023-06-07 17:00:53,094 test_plan.py[line: 52] INFO: 正在往测试报告-测试概况插入计划执行概要记录
+2023-06-07 17:00:53,095 mydb.py[line: 65] INFO: query：INSERT INTO `website_ui_test_report_for_summary`(execution_num, project_id, plan_id, project_name, plan_name, browser,start_time, end_time, time_took, case_total_num, case_pass_num, case_fail_num, case_block_num, remark) VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s,%s, %s, %s, %s)  data：('1686128453', 1, '1', 'test_ui', '测试计划1', '谷歌', '2023-06-07 17:00:53', '', '', 0, 0, 0, 0, '')
+2023-06-07 17:00:53,209 test_plan.py[line: 55] INFO: 正在获取浏览器驱动
+2023-06-07 17:00:54,482 test_plan.py[line: 65] INFO: 正在打开项目主页：http://192.168.20.157:1003/portal/main_new.do
+2023-06-07 17:00:56,569 test_plan.py[line: 70] INFO: ======================正在【谷歌】浏览器下运行测试用例======================
+2023-06-07 17:00:56,569 test_plan.py[line: 74] INFO: ======================开始运行测试用例[名称：ID2-登录测试, ID:2]======================
+2023-06-07 17:00:56,570 test_case.py[line: 29] INFO: 正在查询测试用例[ID：2, 名称：ID2-登录测试]关联的测试步骤
+2023-06-07 17:00:56,570 mydb.py[line: 124] INFO: query：SELECT id, `order`, object_type, page_name, object, exec_operation, input_params, output_params,assert_type, assert_pattern, run_times, try_for_failure, object_id FROM `website_ui_test_case_step` WHERE case_id=%s AND status='启用' ORDER BY `order` ASC  data：(2,)
+2023-06-07 17:00:56,574 test_case.py[line: 67] INFO: ======================开始运行测试步骤：第 1 步======================
+2023-06-07 17:00:56,574 test_case.py[line: 68] INFO: 所属用例：ID2-登录测试
+2023-06-07 17:00:56,574 test_case.py[line: 69] INFO: 所属用例ID：2
+2023-06-07 17:00:56,575 test_case.py[line: 70] INFO: 步骤ID：1
+2023-06-07 17:00:56,575 test_case.py[line: 71] INFO: 步骤类型：操作页面元素
+2023-06-07 17:00:56,575 test_case.py[line: 72] INFO: 操作对象：账号输入
+2023-06-07 17:00:56,576 test_case.py[line: 73] INFO: 所在页面：test_ui->登录页面
+2023-06-07 17:00:56,576 test_case.py[line: 74] INFO: 执行操作：输入
+2023-06-07 17:00:56,576 test_case.py[line: 75] INFO: 输入参数：zx1
+2023-06-07 17:00:56,577 test_case.py[line: 76] INFO: 断言类型：
+2023-06-07 17:00:56,577 test_case.py[line: 77] INFO: 断言模式：
+
+2023-06-07 17:00:56,578 test_case_step.py[line: 41] INFO: 正在查找页面元素选择器
+2023-06-07 17:00:56,579 mydb.py[line: 96] INFO: query：SELECT selector1, selector2 FROM `website_page_element` WHERE  id = %s  data：(2,)
+2023-06-07 17:00:56,579 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT selector1, selector2 FROM `website_page_element` WHERE  id = 2
+2023-06-07 17:00:56,582 test_case_step.py[line: 46] INFO: 正在运行第1次
+2023-06-07 17:00:56,582 seleniumutil.py[line: 362] INFO: 正在根据元素定位器：XPATH=//*[@id='submitA']/img查找元素
+2023-06-07 17:00:56,584 seleniumutil.py[line: 372] INFO: 查找元素采用的适配器：xpath
+2023-06-07 17:00:56,585 seleniumutil.py[line: 373] INFO: 查找元素采用的选择器：//*[@id='submitA']/img
+2023-06-07 17:00:56,585 seleniumutil.py[line: 383] INFO: find_element_by_xpath：//*[@id='submitA']/img
+2023-06-07 17:00:56,639 test_case_step.py[line: 105] INFO: 找到元素：<selenium.webdriver.remote.webelement.WebElement (session="28f4aeae2da64189eac5b8275449bdcd", element="967CE59616C134B4AE2A4B9F3CAB5E12_element_9")>
+2023-06-07 17:00:56,681 test_case_step.py[line: 132] ERROR: 执行输入操作出错:Message: element not interactable
+  (Session info: chrome=113.0.5672.129)
+Stacktrace:
+Backtrace:
+	GetHandleVerifier [0x010A8893+48451]
+	(No symbol) [0x0103B8A1]
+	(No symbol) [0x00F44F20]
+	(No symbol) [0x00F6CB96]
+	(No symbol) [0x00F6C401]
+	(No symbol) [0x00F8A2BC]
+	(No symbol) [0x00F69586]
+	(No symbol) [0x00F8A614]
+	(No symbol) [0x00F9C482]
+	(No symbol) [0x00F8A0B6]
+	(No symbol) [0x00F67E08]
+	(No symbol) [0x00F68F2D]
+	GetHandleVerifier [0x01308E3A+2540266]
+	GetHandleVerifier [0x01348959+2801161]
+	GetHandleVerifier [0x0134295C+2776588]
+	GetHandleVerifier [0x01132280+612144]
+	(No symbol) [0x01044F6C]
+	(No symbol) [0x010411D8]
+	(No symbol) [0x010412BB]
+	(No symbol) [0x01034857]
+	BaseThreadInitThunk [0x75FD05C9+25]
+	RtlGetAppContainerNamedObjectPath [0x770A77AD+237]
+	RtlGetAppContainerNamedObjectPath [0x770A777D+189]
+
+2023-06-07 17:00:56,683 test_case_step.py[line: 54] WARNING: 运行失败：Message: element not interactable
+  (Session info: chrome=113.0.5672.129)
+Stacktrace:
+Backtrace:
+	GetHandleVerifier [0x010A8893+48451]
+	(No symbol) [0x0103B8A1]
+	(No symbol) [0x00F44F20]
+	(No symbol) [0x00F6CB96]
+	(No symbol) [0x00F6C401]
+	(No symbol) [0x00F8A2BC]
+	(No symbol) [0x00F69586]
+	(No symbol) [0x00F8A614]
+	(No symbol) [0x00F9C482]
+	(No symbol) [0x00F8A0B6]
+	(No symbol) [0x00F67E08]
+	(No symbol) [0x00F68F2D]
+	GetHandleVerifier [0x01308E3A+2540266]
+	GetHandleVerifier [0x01348959+2801161]
+	GetHandleVerifier [0x0134295C+2776588]
+	GetHandleVerifier [0x01132280+612144]
+	(No symbol) [0x01044F6C]
+	(No symbol) [0x010411D8]
+	(No symbol) [0x010412BB]
+	(No symbol) [0x01034857]
+	BaseThreadInitThunk [0x75FD05C9+25]
+	RtlGetAppContainerNamedObjectPath [0x770A77AD+237]
+	RtlGetAppContainerNamedObjectPath [0x770A777D+189]
+，正在进行第1次重试
+2023-06-07 17:00:56,685 seleniumutil.py[line: 362] INFO: 正在根据元素定位器：XPATH=//*[@id='submitA']/img查找元素
+2023-06-07 17:00:56,685 seleniumutil.py[line: 372] INFO: 查找元素采用的适配器：xpath
+2023-06-07 17:00:56,685 seleniumutil.py[line: 373] INFO: 查找元素采用的选择器：//*[@id='submitA']/img
+2023-06-07 17:00:56,686 seleniumutil.py[line: 383] INFO: find_element_by_xpath：//*[@id='submitA']/img
+2023-06-07 17:00:56,703 test_case_step.py[line: 105] INFO: 找到元素：<selenium.webdriver.remote.webelement.WebElement (session="28f4aeae2da64189eac5b8275449bdcd", element="967CE59616C134B4AE2A4B9F3CAB5E12_element_9")>
+2023-06-07 17:00:56,737 test_case_step.py[line: 132] ERROR: 执行输入操作出错:Message: element not interactable
+  (Session info: chrome=113.0.5672.129)
+Stacktrace:
+Backtrace:
+	GetHandleVerifier [0x010A8893+48451]
+	(No symbol) [0x0103B8A1]
+	(No symbol) [0x00F44F20]
+	(No symbol) [0x00F6CB96]
+	(No symbol) [0x00F6C401]
+	(No symbol) [0x00F8A2BC]
+	(No symbol) [0x00F69586]
+	(No symbol) [0x00F8A614]
+	(No symbol) [0x00F9C482]
+	(No symbol) [0x00F8A0B6]
+	(No symbol) [0x00F67E08]
+	(No symbol) [0x00F68F2D]
+	GetHandleVerifier [0x01308E3A+2540266]
+	GetHandleVerifier [0x01348959+2801161]
+	GetHandleVerifier [0x0134295C+2776588]
+	GetHandleVerifier [0x01132280+612144]
+	(No symbol) [0x01044F6C]
+	(No symbol) [0x010411D8]
+	(No symbol) [0x010412BB]
+	(No symbol) [0x01034857]
+	BaseThreadInitThunk [0x75FD05C9+25]
+	RtlGetAppContainerNamedObjectPath [0x770A77AD+237]
+	RtlGetAppContainerNamedObjectPath [0x770A777D+189]
+
+2023-06-07 17:00:56,739 test_case_step.py[line: 54] WARNING: 运行失败：Message: element not interactable
+  (Session info: chrome=113.0.5672.129)
+Stacktrace:
+Backtrace:
+	GetHandleVerifier [0x010A8893+48451]
+	(No symbol) [0x0103B8A1]
+	(No symbol) [0x00F44F20]
+	(No symbol) [0x00F6CB96]
+	(No symbol) [0x00F6C401]
+	(No symbol) [0x00F8A2BC]
+	(No symbol) [0x00F69586]
+	(No symbol) [0x00F8A614]
+	(No symbol) [0x00F9C482]
+	(No symbol) [0x00F8A0B6]
+	(No symbol) [0x00F67E08]
+	(No symbol) [0x00F68F2D]
+	GetHandleVerifier [0x01308E3A+2540266]
+	GetHandleVerifier [0x01348959+2801161]
+	GetHandleVerifier [0x0134295C+2776588]
+	GetHandleVerifier [0x01132280+612144]
+	(No symbol) [0x01044F6C]
+	(No symbol) [0x010411D8]
+	(No symbol) [0x010412BB]
+	(No symbol) [0x01034857]
+	BaseThreadInitThunk [0x75FD05C9+25]
+	RtlGetAppContainerNamedObjectPath [0x770A77AD+237]
+	RtlGetAppContainerNamedObjectPath [0x770A777D+189]
+，正在进行第2次重试
+2023-06-07 17:00:56,741 test_case_step.py[line: 46] INFO: 正在运行第2次
+2023-06-07 17:00:56,741 seleniumutil.py[line: 362] INFO: 正在根据元素定位器：XPATH=//*[@id='submitA']/img查找元素
+2023-06-07 17:00:56,741 seleniumutil.py[line: 372] INFO: 查找元素采用的适配器：xpath
+2023-06-07 17:00:56,741 seleniumutil.py[line: 373] INFO: 查找元素采用的选择器：//*[@id='submitA']/img
+2023-06-07 17:00:56,741 seleniumutil.py[line: 383] INFO: find_element_by_xpath：//*[@id='submitA']/img
+2023-06-07 17:00:56,756 test_case_step.py[line: 105] INFO: 找到元素：<selenium.webdriver.remote.webelement.WebElement (session="28f4aeae2da64189eac5b8275449bdcd", element="967CE59616C134B4AE2A4B9F3CAB5E12_element_9")>
+2023-06-07 17:00:56,784 test_case_step.py[line: 132] ERROR: 执行输入操作出错:Message: element not interactable
+  (Session info: chrome=113.0.5672.129)
+Stacktrace:
+Backtrace:
+	GetHandleVerifier [0x010A8893+48451]
+	(No symbol) [0x0103B8A1]
+	(No symbol) [0x00F44F20]
+	(No symbol) [0x00F6CB96]
+	(No symbol) [0x00F6C401]
+	(No symbol) [0x00F8A2BC]
+	(No symbol) [0x00F69586]
+	(No symbol) [0x00F8A614]
+	(No symbol) [0x00F9C482]
+	(No symbol) [0x00F8A0B6]
+	(No symbol) [0x00F67E08]
+	(No symbol) [0x00F68F2D]
+	GetHandleVerifier [0x01308E3A+2540266]
+	GetHandleVerifier [0x01348959+2801161]
+	GetHandleVerifier [0x0134295C+2776588]
+	GetHandleVerifier [0x01132280+612144]
+	(No symbol) [0x01044F6C]
+	(No symbol) [0x010411D8]
+	(No symbol) [0x010412BB]
+	(No symbol) [0x01034857]
+	BaseThreadInitThunk [0x75FD05C9+25]
+	RtlGetAppContainerNamedObjectPath [0x770A77AD+237]
+	RtlGetAppContainerNamedObjectPath [0x770A777D+189]
+
+2023-06-07 17:00:56,786 test_case_step.py[line: 54] WARNING: 运行失败：Message: element not interactable
+  (Session info: chrome=113.0.5672.129)
+Stacktrace:
+Backtrace:
+	GetHandleVerifier [0x010A8893+48451]
+	(No symbol) [0x0103B8A1]
+	(No symbol) [0x00F44F20]
+	(No symbol) [0x00F6CB96]
+	(No symbol) [0x00F6C401]
+	(No symbol) [0x00F8A2BC]
+	(No symbol) [0x00F69586]
+	(No symbol) [0x00F8A614]
+	(No symbol) [0x00F9C482]
+	(No symbol) [0x00F8A0B6]
+	(No symbol) [0x00F67E08]
+	(No symbol) [0x00F68F2D]
+	GetHandleVerifier [0x01308E3A+2540266]
+	GetHandleVerifier [0x01348959+2801161]
+	GetHandleVerifier [0x0134295C+2776588]
+	GetHandleVerifier [0x01132280+612144]
+	(No symbol) [0x01044F6C]
+	(No symbol) [0x010411D8]
+	(No symbol) [0x010412BB]
+	(No symbol) [0x01034857]
+	BaseThreadInitThunk [0x75FD05C9+25]
+	RtlGetAppContainerNamedObjectPath [0x770A77AD+237]
+	RtlGetAppContainerNamedObjectPath [0x770A777D+189]
+，正在进行第1次重试
+2023-06-07 17:00:56,788 seleniumutil.py[line: 362] INFO: 正在根据元素定位器：XPATH=//*[@id='submitA']/img查找元素
+2023-06-07 17:00:56,788 seleniumutil.py[line: 372] INFO: 查找元素采用的适配器：xpath
+2023-06-07 17:00:56,788 seleniumutil.py[line: 373] INFO: 查找元素采用的选择器：//*[@id='submitA']/img
+2023-06-07 17:00:56,788 seleniumutil.py[line: 383] INFO: find_element_by_xpath：//*[@id='submitA']/img
+2023-06-07 17:00:56,803 test_case_step.py[line: 105] INFO: 找到元素：<selenium.webdriver.remote.webelement.WebElement (session="28f4aeae2da64189eac5b8275449bdcd", element="967CE59616C134B4AE2A4B9F3CAB5E12_element_9")>
+2023-06-07 17:00:56,831 test_case_step.py[line: 132] ERROR: 执行输入操作出错:Message: element not interactable
+  (Session info: chrome=113.0.5672.129)
+Stacktrace:
+Backtrace:
+	GetHandleVerifier [0x010A8893+48451]
+	(No symbol) [0x0103B8A1]
+	(No symbol) [0x00F44F20]
+	(No symbol) [0x00F6CB96]
+	(No symbol) [0x00F6C401]
+	(No symbol) [0x00F8A2BC]
+	(No symbol) [0x00F69586]
+	(No symbol) [0x00F8A614]
+	(No symbol) [0x00F9C482]
+	(No symbol) [0x00F8A0B6]
+	(No symbol) [0x00F67E08]
+	(No symbol) [0x00F68F2D]
+	GetHandleVerifier [0x01308E3A+2540266]
+	GetHandleVerifier [0x01348959+2801161]
+	GetHandleVerifier [0x0134295C+2776588]
+	GetHandleVerifier [0x01132280+612144]
+	(No symbol) [0x01044F6C]
+	(No symbol) [0x010411D8]
+	(No symbol) [0x010412BB]
+	(No symbol) [0x01034857]
+	BaseThreadInitThunk [0x75FD05C9+25]
+	RtlGetAppContainerNamedObjectPath [0x770A77AD+237]
+	RtlGetAppContainerNamedObjectPath [0x770A777D+189]
+
+2023-06-07 17:00:56,833 test_case_step.py[line: 54] WARNING: 运行失败：Message: element not interactable
+  (Session info: chrome=113.0.5672.129)
+Stacktrace:
+Backtrace:
+	GetHandleVerifier [0x010A8893+48451]
+	(No symbol) [0x0103B8A1]
+	(No symbol) [0x00F44F20]
+	(No symbol) [0x00F6CB96]
+	(No symbol) [0x00F6C401]
+	(No symbol) [0x00F8A2BC]
+	(No symbol) [0x00F69586]
+	(No symbol) [0x00F8A614]
+	(No symbol) [0x00F9C482]
+	(No symbol) [0x00F8A0B6]
+	(No symbol) [0x00F67E08]
+	(No symbol) [0x00F68F2D]
+	GetHandleVerifier [0x01308E3A+2540266]
+	GetHandleVerifier [0x01348959+2801161]
+	GetHandleVerifier [0x0134295C+2776588]
+	GetHandleVerifier [0x01132280+612144]
+	(No symbol) [0x01044F6C]
+	(No symbol) [0x010411D8]
+	(No symbol) [0x010412BB]
+	(No symbol) [0x01034857]
+	BaseThreadInitThunk [0x75FD05C9+25]
+	RtlGetAppContainerNamedObjectPath [0x770A77AD+237]
+	RtlGetAppContainerNamedObjectPath [0x770A777D+189]
+，正在进行第2次重试
+2023-06-07 17:00:56,834 test_case_step.py[line: 78] INFO: ======================正在记录用例步骤运行结果到测试报告-用例步骤执行明细表======================
+2023-06-07 17:00:56,835 mydb.py[line: 65] INFO: query：INSERT INTO `website_ui_test_report_for_case_step`(execution_num, plan_id, case_id, step_id, `order`, page, object, exec_operation, input_params, output_params, assert_type, check_pattern, run_times, try_for_failure, run_result, remark, run_time, run_id) VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)  data：('1686128453', '1', 2, 1, 1, 'test_ui->登录页面', '账号输入', '输入', 'zx1', '', '', '', 1, 1, '失败', '步骤运行失败：Message: element not interactable\n  (Session info: chrome=113.0.5672.129)\nStacktrace:\nBacktrace:\n\tGetHandleVerifier [0x010A8893+48451]\n\t(No symbol) [0x0103B8A1]\n\t(No symbol) [0x00F44F20]\n\t(No symbol) [0x00F6CB96]\n\t(No symbol) [0x00F6C401]\n\t(No symbol) [0x00F8A2BC]\n\t(No symbol) [0x00F69586]\n\t(No symbol) [0x00F8A614]\n\t(No symbol) [0x00F9C482]\n\t(No symbol) [0x00F8A0B6]\n\t(No symbol) [0x00F67E08]\n\t(No symbol) [0x00F68F2D]\n\tGetHandleVerifier [0x01308E3A+2540266]\n\tGetHandleVerifier [0x01348959+2801161]\n\tGetHandleVerifier [0x0134295C+2776588]\n\tGetHandleVerifier [0x01132280+612144]\n\t(No symbol) [0x01044F6C]\n\t(No symbol) [0x010411D8]\n\t(No symbol) [0x010412BB]\n\t(No symbol) [0x01034857]\n\tBaseThreadInitThunk [0x75FD05C9+25]\n\tRtlGetAppContainerNamedObjectPath [0x770A77AD+237]\n\tRtlGetAppContainerNamedObjectPath [0x770A777D+189]\n', '2023-06-07 17:00:56', 0)
+2023-06-07 17:00:56,838 mydb.py[line: 73] ERROR: 执行数据库插入操作失败：1406 (22001): Data too long for column 'remark' at row 1
+2023-06-07 17:00:56,841 test_report.py[line: 62] ERROR: 往测试报告-测试用例步骤执行明细表插入运行记录失败：1406 (22001): Data too long for column 'remark' at row 1,提前退出程序
+2023-06-07 17:00:56,841 test_case.py[line: 114] INFO: 正在计算运行耗时
+2023-06-07 17:00:56,842 test_case.py[line: 120] INFO: 正在记录用例运行结果到测试报告-用例执行明细表
+2023-06-07 17:00:56,842 mydb.py[line: 65] INFO: query：INSERT INTO `website_ui_test_report_for_case`(execution_num, plan_id, case_id, case_path, case_name, run_result, remark, run_time, time_took) VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s)  data：('1686128453', '1', 2, 'test_ui', 'ID2-登录测试', '阻塞', '没有找到与用例关联的测试步骤', '2023-06-07 17:00:56', '0天 0小时 0分 0秒')
+2023-06-07 17:00:59,107 test_plan.py[line: 99] INFO: 测试用例执行完毕，正在更新测试报告-测试概况表
+2023-06-07 17:00:59,108 test_report.py[line: 14] INFO: 正在查询运行状态为：成功的用例记录数
+2023-06-07 17:00:59,110 mydb.py[line: 96] INFO: query：SELECT COUNT(id) FROM `website_ui_test_report_for_case` WHERE run_result = '%s' and plan_id = %s AND execution_num =%s  data：('成功', '1', '1686128453')
+2023-06-07 17:00:59,111 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT COUNT(id) FROM `website_ui_test_report_for_case` WHERE run_result = '成功' and plan_id = 1 AND execution_num =1686128453
+2023-06-07 17:00:59,116 test_report.py[line: 14] INFO: 正在查询运行状态为：失败的用例记录数
+2023-06-07 17:00:59,117 mydb.py[line: 96] INFO: query：SELECT COUNT(id) FROM `website_ui_test_report_for_case` WHERE run_result = '%s' and plan_id = %s AND execution_num =%s  data：('失败', '1', '1686128453')
+2023-06-07 17:00:59,120 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT COUNT(id) FROM `website_ui_test_report_for_case` WHERE run_result = '失败' and plan_id = 1 AND execution_num =1686128453
+2023-06-07 17:00:59,124 test_report.py[line: 14] INFO: 正在查询运行状态为：阻塞的用例记录数
+2023-06-07 17:00:59,125 mydb.py[line: 96] INFO: query：SELECT COUNT(id) FROM `website_ui_test_report_for_case` WHERE run_result = '%s' and plan_id = %s AND execution_num =%s  data：('阻塞', '1', '1686128453')
+2023-06-07 17:00:59,126 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT COUNT(id) FROM `website_ui_test_report_for_case` WHERE run_result = '阻塞' and plan_id = 1 AND execution_num =1686128453
+2023-06-07 17:00:59,130 mydb.py[line: 81] INFO: update_query：UPDATE `website_ui_test_report_for_summary` SET end_time='2023-06-07 17:00:59', time_took='0天 0小时 0分 6秒', case_total_num=1, case_pass_num=0, case_fail_num=0, case_block_num=1, remark='部分用例运行出错' WHERE execution_num='1686128453' AND plan_id=1
+2023-06-07 17:00:59,242 running_plan.py[line: 83] INFO: 正在释放资源
+2023-06-07 17:00:59,243 running_plan.py[line: 84] INFO: 正在断开与项目关联的数据库连接
+2023-06-07 17:00:59,247 running_plan.py[line: 90] INFO: 正在清理与项目关联的全局变量
+2023-06-07 17:00:59,249 main.py[line: 56] INFO: 执行失败，正在更新数据库运行计划的运行状态
+2023-06-07 17:00:59,250 mydb.py[line: 81] INFO: update_query：UPDATE `website_running_plan` SET running_status ='运行失败', remark='测试计划["1"]运行失败' WHERE running_plan_num= 1686125776140380
+2023-06-07 17:03:40,586 main.py[line: 26] INFO: 执行当前脚本的Python版本：3.9.5
+2023-06-07 17:03:40,587 main.py[line: 28] INFO: 当前运行模式为：rop
+2023-06-07 17:03:40,587 main.py[line: 31] INFO: 当前运行计划编号为：1686125776140380
+2023-06-07 17:03:40,588 main.py[line: 41] INFO: 正在查询运行计划相关信息
+2023-06-07 17:03:40,588 mydb.py[line: 96] INFO: query：SELECT running_plan_name,project_id, project_name, plan_name, plan_id, valid_flag FROM `website_running_plan` WHERE running_plan_num =%s  data：('1686125776140380',)
+2023-06-07 17:03:40,588 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT running_plan_name,project_id, project_name, plan_name, plan_id, valid_flag FROM `website_running_plan` WHERE running_plan_num =1686125776140380
+2023-06-07 17:03:40,591 main.py[line: 48] INFO: 待运行项目：名称：test_ui，ID：1，关联的测试计划有：测试计划1
+2023-06-07 17:03:40,592 main.py[line: 51] INFO: ======================开始执行运行计划[名称：测试运行计划01]======================
+2023-06-07 17:03:40,592 running_plan.py[line: 24] INFO: 正在查询项目[ID：1,名称：test_ui]相关信息
+2023-06-07 17:03:40,592 mydb.py[line: 96] INFO: query：SELECT home_page, environment_id, valid_flag FROM `website_ui_project_setting` WHERE id = %s  data：(1,)
+2023-06-07 17:03:40,592 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT home_page, environment_id, valid_flag FROM `website_ui_project_setting` WHERE id = 1
+2023-06-07 17:03:40,596 running_plan.py[line: 31] INFO: 正在查询与项目关联的数据库信息
+2023-06-07 17:03:40,598 mydb.py[line: 124] INFO: query：SELECT db_type, db_alias, db_name, db_host, db_port, db_user, db_passwd FROM `website_database_setting` WHERE  locate('UI1', project_id) != 0  AND environment_id= '1'  data：
+2023-06-07 17:03:40,605 running_plan.py[line: 45] INFO: 正在查询与项目关联的全局变量
+2023-06-07 17:03:40,605 mydb.py[line: 124] INFO: query：SELECT `name`, `value` FROM `website_global_variable_setting` WHERE  project_type='UI项目' AND locate('%s', project_id) != 0 AND locate('%s', env_id) != 0   data：(1, 1)
+2023-06-07 17:03:40,608 running_plan.py[line: 60] INFO: ======================开始运行测试项目[名称：test_ui, ID：1]======================
+2023-06-07 17:03:40,608 test_project.py[line: 98] INFO: ======================正在同步更新与待运行测试计划关联的所有用例树节点信息======================
+2023-06-07 17:03:40,609 test_project.py[line: 36] INFO: 待运行计划ID列表：['1']
+2023-06-07 17:03:40,609 test_project.py[line: 38] INFO: 正在查询与测试计划关联的用例树节点
+2023-06-07 17:03:40,609 mydb.py[line: 124] INFO: query：SELECT node_id FROM `website_ui_case_tree_test_plan` WHERE plan_id IN (1) GROUP BY node_id  data：
+2023-06-07 17:03:40,612 test_project.py[line: 52] INFO: 正在查找用例树节点信息
+2023-06-07 17:03:40,613 mydb.py[line: 96] INFO: query：SELECT t1.text, t1.parent_id, COUNT(t2.id) FROM `website_ui_case_tree` AS t1 LEFT JOIN `website_ui_case_tree` AS t2 ON t2.parent_id = t1.id WHERE t1.id = %s  data：(1,)
+2023-06-07 17:03:40,614 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT t1.text, t1.parent_id, COUNT(t2.id) FROM `website_ui_case_tree` AS t1 LEFT JOIN `website_ui_case_tree` AS t2 ON t2.parent_id = t1.id WHERE t1.id = 1
+2023-06-07 17:03:40,617 mydb.py[line: 96] INFO: query：SELECT parent_id, text FROM `website_ui_case_tree` WHERE id = %s  data：(0,)
+2023-06-07 17:03:40,617 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT parent_id, text FROM `website_ui_case_tree` WHERE id = 0
+2023-06-07 17:03:40,619 test_project.py[line: 64] INFO: 正在更新测试计划用例树节点关联表记录
+2023-06-07 17:03:40,620 mydb.py[line: 81] INFO: update_query：UPDATE website_ui_case_tree_test_plan SET node_path='', sub_node_num=1 WHERE plan_id IN (1) AND node_id = 1
+2023-06-07 17:03:40,622 test_project.py[line: 52] INFO: 正在查找用例树节点信息
+2023-06-07 17:03:40,622 mydb.py[line: 96] INFO: query：SELECT t1.text, t1.parent_id, COUNT(t2.id) FROM `website_ui_case_tree` AS t1 LEFT JOIN `website_ui_case_tree` AS t2 ON t2.parent_id = t1.id WHERE t1.id = %s  data：(2,)
+2023-06-07 17:03:40,623 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT t1.text, t1.parent_id, COUNT(t2.id) FROM `website_ui_case_tree` AS t1 LEFT JOIN `website_ui_case_tree` AS t2 ON t2.parent_id = t1.id WHERE t1.id = 2
+2023-06-07 17:03:40,625 mydb.py[line: 96] INFO: query：SELECT parent_id, text FROM `website_ui_case_tree` WHERE id = %s  data：(1,)
+2023-06-07 17:03:40,626 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT parent_id, text FROM `website_ui_case_tree` WHERE id = 1
+2023-06-07 17:03:40,628 mydb.py[line: 96] INFO: query：SELECT parent_id, text FROM `website_ui_case_tree` WHERE id = %s  data：(0,)
+2023-06-07 17:03:40,628 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT parent_id, text FROM `website_ui_case_tree` WHERE id = 0
+2023-06-07 17:03:40,631 test_project.py[line: 64] INFO: 正在更新测试计划用例树节点关联表记录
+2023-06-07 17:03:40,631 mydb.py[line: 81] INFO: update_query：UPDATE website_ui_case_tree_test_plan SET node_path='test_ui', sub_node_num=0 WHERE plan_id IN (1) AND node_id = 2
+2023-06-07 17:03:40,634 test_project.py[line: 104] INFO: 同步更新与待运行测试计划关联的所有用例树节点信息成功
+2023-06-07 17:03:40,634 test_project.py[line: 107] INFO: 正在查询测试计划[ID：1]相关信息
+2023-06-07 17:03:40,635 mydb.py[line: 96] INFO: query：SELECT plan_name, browsers, valid_flag FROM `website_ui_test_plan` WHERE id = %s  data：('1',)
+2023-06-07 17:03:40,635 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT plan_name, browsers, valid_flag FROM `website_ui_test_plan` WHERE id = 1
+2023-06-07 17:03:40,641 test_project.py[line: 113] INFO: ======================开始运行测试计划[名称：测试计划1, ID：1]======================
+2023-06-07 17:03:40,642 test_plan.py[line: 31] INFO: 计划运行的浏览器有：['谷歌']
+2023-06-07 17:03:40,642 test_plan.py[line: 33] INFO: 正在查询测试计划关联的测试用例
+2023-06-07 17:03:40,642 mydb.py[line: 124] INFO: query：SELECT node_id, node_path, node_name FROM `website_ui_case_tree_test_plan` WHERE plan_id = %s AND sub_node_num = 0 ORDER BY `order` ASC  data：('1',)
+2023-06-07 17:03:40,645 test_plan.py[line: 52] INFO: 正在往测试报告-测试概况插入计划执行概要记录
+2023-06-07 17:03:40,646 mydb.py[line: 65] INFO: query：INSERT INTO `website_ui_test_report_for_summary`(execution_num, project_id, plan_id, project_name, plan_name, browser,start_time, end_time, time_took, case_total_num, case_pass_num, case_fail_num, case_block_num, remark) VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s,%s, %s, %s, %s)  data：('1686128620', 1, '1', 'test_ui', '测试计划1', '谷歌', '2023-06-07 17:03:40', '', '', 0, 0, 0, 0, '')
+2023-06-07 17:03:40,740 test_plan.py[line: 55] INFO: 正在获取浏览器驱动
+2023-06-07 17:03:42,186 test_plan.py[line: 65] INFO: 正在打开项目主页：http://192.168.20.157:1003/portal/main_new.do
+2023-06-07 17:03:44,575 test_plan.py[line: 70] INFO: ======================正在【谷歌】浏览器下运行测试用例======================
+2023-06-07 17:03:44,576 test_plan.py[line: 74] INFO: ======================开始运行测试用例[名称：ID2-登录测试, ID:2]======================
+2023-06-07 17:03:44,579 test_case.py[line: 29] INFO: 正在查询测试用例[ID：2, 名称：ID2-登录测试]关联的测试步骤
+2023-06-07 17:03:44,579 mydb.py[line: 124] INFO: query：SELECT id, `order`, object_type, page_name, object, exec_operation, input_params, output_params,assert_type, assert_pattern, run_times, try_for_failure, object_id FROM `website_ui_test_case_step` WHERE case_id=%s AND status='启用' ORDER BY `order` ASC  data：(2,)
+2023-06-07 17:03:44,583 test_case.py[line: 67] INFO: ======================开始运行测试步骤：第 1 步======================
+2023-06-07 17:03:44,583 test_case.py[line: 68] INFO: 所属用例：ID2-登录测试
+2023-06-07 17:03:44,584 test_case.py[line: 69] INFO: 所属用例ID：2
+2023-06-07 17:03:44,585 test_case.py[line: 70] INFO: 步骤ID：1
+2023-06-07 17:03:44,586 test_case.py[line: 71] INFO: 步骤类型：操作页面元素
+2023-06-07 17:03:44,587 test_case.py[line: 72] INFO: 操作对象：账号输入
+2023-06-07 17:03:44,587 test_case.py[line: 73] INFO: 所在页面：test_ui->登录页面
+2023-06-07 17:03:44,587 test_case.py[line: 74] INFO: 执行操作：输入
+2023-06-07 17:03:44,588 test_case.py[line: 75] INFO: 输入参数：zx1
+2023-06-07 17:03:44,588 test_case.py[line: 76] INFO: 断言类型：
+2023-06-07 17:03:44,588 test_case.py[line: 77] INFO: 断言模式：
+
+2023-06-07 17:03:44,589 test_case_step.py[line: 41] INFO: 正在查找页面元素选择器
+2023-06-07 17:03:44,589 mydb.py[line: 96] INFO: query：SELECT selector1, selector2 FROM `website_page_element` WHERE  id = %s  data：(2,)
+2023-06-07 17:03:44,589 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT selector1, selector2 FROM `website_page_element` WHERE  id = 2
+2023-06-07 17:03:44,592 test_case_step.py[line: 46] INFO: 正在运行第1次
+2023-06-07 17:03:44,592 seleniumutil.py[line: 362] INFO: 正在根据元素定位器：XPATH=//*[@id='submitA']/img查找元素
+2023-06-07 17:03:44,593 seleniumutil.py[line: 372] INFO: 查找元素采用的适配器：xpath
+2023-06-07 17:03:44,593 seleniumutil.py[line: 373] INFO: 查找元素采用的选择器：//*[@id='submitA']/img
+2023-06-07 17:03:44,593 seleniumutil.py[line: 383] INFO: find_element_by_xpath：//*[@id='submitA']/img
+2023-06-07 17:03:44,620 test_case_step.py[line: 105] INFO: 找到元素：<selenium.webdriver.remote.webelement.WebElement (session="803d6e734418a86f27c160c50ae49909", element="A82A1EEF8D0899E78831489AA25EE07B_element_9")>
+2023-06-07 17:03:44,668 test_case_step.py[line: 132] ERROR: 执行输入操作出错:Message: element not interactable
+  (Session info: chrome=113.0.5672.129)
+Stacktrace:
+Backtrace:
+	GetHandleVerifier [0x010A8893+48451]
+	(No symbol) [0x0103B8A1]
+	(No symbol) [0x00F44F20]
+	(No symbol) [0x00F6CB96]
+	(No symbol) [0x00F6C401]
+	(No symbol) [0x00F8A2BC]
+	(No symbol) [0x00F69586]
+	(No symbol) [0x00F8A614]
+	(No symbol) [0x00F9C482]
+	(No symbol) [0x00F8A0B6]
+	(No symbol) [0x00F67E08]
+	(No symbol) [0x00F68F2D]
+	GetHandleVerifier [0x01308E3A+2540266]
+	GetHandleVerifier [0x01348959+2801161]
+	GetHandleVerifier [0x0134295C+2776588]
+	GetHandleVerifier [0x01132280+612144]
+	(No symbol) [0x01044F6C]
+	(No symbol) [0x010411D8]
+	(No symbol) [0x010412BB]
+	(No symbol) [0x01034857]
+	BaseThreadInitThunk [0x75FD05C9+25]
+	RtlGetAppContainerNamedObjectPath [0x770A77AD+237]
+	RtlGetAppContainerNamedObjectPath [0x770A777D+189]
+
+2023-06-07 17:03:44,670 test_case_step.py[line: 54] WARNING: 运行失败：Message: element not interactable
+  (Session info: chrome=113.0.5672.129)
+Stacktrace:
+Backtrace:
+	GetHandleVerifier [0x010A8893+48451]
+	(No symbol) [0x0103B8A1]
+	(No symbol) [0x00F44F20]
+	(No symbol) [0x00F6CB96]
+	(No symbol) [0x00F6C401]
+	(No symbol) [0x00F8A2BC]
+	(No symbol) [0x00F69586]
+	(No symbol) [0x00F8A614]
+	(No symbol) [0x00F9C482]
+	(No symbol) [0x00F8A0B6]
+	(No symbol) [0x00F67E08]
+	(No symbol) [0x00F68F2D]
+	GetHandleVerifier [0x01308E3A+2540266]
+	GetHandleVerifier [0x01348959+2801161]
+	GetHandleVerifier [0x0134295C+2776588]
+	GetHandleVerifier [0x01132280+612144]
+	(No symbol) [0x01044F6C]
+	(No symbol) [0x010411D8]
+	(No symbol) [0x010412BB]
+	(No symbol) [0x01034857]
+	BaseThreadInitThunk [0x75FD05C9+25]
+	RtlGetAppContainerNamedObjectPath [0x770A77AD+237]
+	RtlGetAppContainerNamedObjectPath [0x770A777D+189]
+，正在进行第1次重试
+2023-06-07 17:03:44,672 seleniumutil.py[line: 362] INFO: 正在根据元素定位器：XPATH=//*[@id='submitA']/img查找元素
+2023-06-07 17:03:44,672 seleniumutil.py[line: 372] INFO: 查找元素采用的适配器：xpath
+2023-06-07 17:03:44,672 seleniumutil.py[line: 373] INFO: 查找元素采用的选择器：//*[@id='submitA']/img
+2023-06-07 17:03:44,673 seleniumutil.py[line: 383] INFO: find_element_by_xpath：//*[@id='submitA']/img
+2023-06-07 17:03:44,691 test_case_step.py[line: 105] INFO: 找到元素：<selenium.webdriver.remote.webelement.WebElement (session="803d6e734418a86f27c160c50ae49909", element="A82A1EEF8D0899E78831489AA25EE07B_element_9")>
+2023-06-07 17:03:44,719 test_case_step.py[line: 132] ERROR: 执行输入操作出错:Message: element not interactable
+  (Session info: chrome=113.0.5672.129)
+Stacktrace:
+Backtrace:
+	GetHandleVerifier [0x010A8893+48451]
+	(No symbol) [0x0103B8A1]
+	(No symbol) [0x00F44F20]
+	(No symbol) [0x00F6CB96]
+	(No symbol) [0x00F6C401]
+	(No symbol) [0x00F8A2BC]
+	(No symbol) [0x00F69586]
+	(No symbol) [0x00F8A614]
+	(No symbol) [0x00F9C482]
+	(No symbol) [0x00F8A0B6]
+	(No symbol) [0x00F67E08]
+	(No symbol) [0x00F68F2D]
+	GetHandleVerifier [0x01308E3A+2540266]
+	GetHandleVerifier [0x01348959+2801161]
+	GetHandleVerifier [0x0134295C+2776588]
+	GetHandleVerifier [0x01132280+612144]
+	(No symbol) [0x01044F6C]
+	(No symbol) [0x010411D8]
+	(No symbol) [0x010412BB]
+	(No symbol) [0x01034857]
+	BaseThreadInitThunk [0x75FD05C9+25]
+	RtlGetAppContainerNamedObjectPath [0x770A77AD+237]
+	RtlGetAppContainerNamedObjectPath [0x770A777D+189]
+
+2023-06-07 17:03:44,721 test_case_step.py[line: 54] WARNING: 运行失败：Message: element not interactable
+  (Session info: chrome=113.0.5672.129)
+Stacktrace:
+Backtrace:
+	GetHandleVerifier [0x010A8893+48451]
+	(No symbol) [0x0103B8A1]
+	(No symbol) [0x00F44F20]
+	(No symbol) [0x00F6CB96]
+	(No symbol) [0x00F6C401]
+	(No symbol) [0x00F8A2BC]
+	(No symbol) [0x00F69586]
+	(No symbol) [0x00F8A614]
+	(No symbol) [0x00F9C482]
+	(No symbol) [0x00F8A0B6]
+	(No symbol) [0x00F67E08]
+	(No symbol) [0x00F68F2D]
+	GetHandleVerifier [0x01308E3A+2540266]
+	GetHandleVerifier [0x01348959+2801161]
+	GetHandleVerifier [0x0134295C+2776588]
+	GetHandleVerifier [0x01132280+612144]
+	(No symbol) [0x01044F6C]
+	(No symbol) [0x010411D8]
+	(No symbol) [0x010412BB]
+	(No symbol) [0x01034857]
+	BaseThreadInitThunk [0x75FD05C9+25]
+	RtlGetAppContainerNamedObjectPath [0x770A77AD+237]
+	RtlGetAppContainerNamedObjectPath [0x770A777D+189]
+，正在进行第2次重试
+2023-06-07 17:03:44,722 test_case_step.py[line: 46] INFO: 正在运行第2次
+2023-06-07 17:03:44,723 seleniumutil.py[line: 362] INFO: 正在根据元素定位器：XPATH=//*[@id='submitA']/img查找元素
+2023-06-07 17:03:44,723 seleniumutil.py[line: 372] INFO: 查找元素采用的适配器：xpath
+2023-06-07 17:03:44,723 seleniumutil.py[line: 373] INFO: 查找元素采用的选择器：//*[@id='submitA']/img
+2023-06-07 17:03:44,724 seleniumutil.py[line: 383] INFO: find_element_by_xpath：//*[@id='submitA']/img
+2023-06-07 17:03:44,738 test_case_step.py[line: 105] INFO: 找到元素：<selenium.webdriver.remote.webelement.WebElement (session="803d6e734418a86f27c160c50ae49909", element="A82A1EEF8D0899E78831489AA25EE07B_element_9")>
+2023-06-07 17:03:44,765 test_case_step.py[line: 132] ERROR: 执行输入操作出错:Message: element not interactable
+  (Session info: chrome=113.0.5672.129)
+Stacktrace:
+Backtrace:
+	GetHandleVerifier [0x010A8893+48451]
+	(No symbol) [0x0103B8A1]
+	(No symbol) [0x00F44F20]
+	(No symbol) [0x00F6CB96]
+	(No symbol) [0x00F6C401]
+	(No symbol) [0x00F8A2BC]
+	(No symbol) [0x00F69586]
+	(No symbol) [0x00F8A614]
+	(No symbol) [0x00F9C482]
+	(No symbol) [0x00F8A0B6]
+	(No symbol) [0x00F67E08]
+	(No symbol) [0x00F68F2D]
+	GetHandleVerifier [0x01308E3A+2540266]
+	GetHandleVerifier [0x01348959+2801161]
+	GetHandleVerifier [0x0134295C+2776588]
+	GetHandleVerifier [0x01132280+612144]
+	(No symbol) [0x01044F6C]
+	(No symbol) [0x010411D8]
+	(No symbol) [0x010412BB]
+	(No symbol) [0x01034857]
+	BaseThreadInitThunk [0x75FD05C9+25]
+	RtlGetAppContainerNamedObjectPath [0x770A77AD+237]
+	RtlGetAppContainerNamedObjectPath [0x770A777D+189]
+
+2023-06-07 17:03:44,767 test_case_step.py[line: 54] WARNING: 运行失败：Message: element not interactable
+  (Session info: chrome=113.0.5672.129)
+Stacktrace:
+Backtrace:
+	GetHandleVerifier [0x010A8893+48451]
+	(No symbol) [0x0103B8A1]
+	(No symbol) [0x00F44F20]
+	(No symbol) [0x00F6CB96]
+	(No symbol) [0x00F6C401]
+	(No symbol) [0x00F8A2BC]
+	(No symbol) [0x00F69586]
+	(No symbol) [0x00F8A614]
+	(No symbol) [0x00F9C482]
+	(No symbol) [0x00F8A0B6]
+	(No symbol) [0x00F67E08]
+	(No symbol) [0x00F68F2D]
+	GetHandleVerifier [0x01308E3A+2540266]
+	GetHandleVerifier [0x01348959+2801161]
+	GetHandleVerifier [0x0134295C+2776588]
+	GetHandleVerifier [0x01132280+612144]
+	(No symbol) [0x01044F6C]
+	(No symbol) [0x010411D8]
+	(No symbol) [0x010412BB]
+	(No symbol) [0x01034857]
+	BaseThreadInitThunk [0x75FD05C9+25]
+	RtlGetAppContainerNamedObjectPath [0x770A77AD+237]
+	RtlGetAppContainerNamedObjectPath [0x770A777D+189]
+，正在进行第1次重试
+2023-06-07 17:03:44,827 seleniumutil.py[line: 362] INFO: 正在根据元素定位器：XPATH=//*[@id='submitA']/img查找元素
+2023-06-07 17:03:44,827 seleniumutil.py[line: 372] INFO: 查找元素采用的适配器：xpath
+2023-06-07 17:03:44,828 seleniumutil.py[line: 373] INFO: 查找元素采用的选择器：//*[@id='submitA']/img
+2023-06-07 17:03:44,828 seleniumutil.py[line: 383] INFO: find_element_by_xpath：//*[@id='submitA']/img
+2023-06-07 17:03:44,842 test_case_step.py[line: 105] INFO: 找到元素：<selenium.webdriver.remote.webelement.WebElement (session="803d6e734418a86f27c160c50ae49909", element="A82A1EEF8D0899E78831489AA25EE07B_element_9")>
+2023-06-07 17:03:44,870 test_case_step.py[line: 132] ERROR: 执行输入操作出错:Message: element not interactable
+  (Session info: chrome=113.0.5672.129)
+Stacktrace:
+Backtrace:
+	GetHandleVerifier [0x010A8893+48451]
+	(No symbol) [0x0103B8A1]
+	(No symbol) [0x00F44F20]
+	(No symbol) [0x00F6CB96]
+	(No symbol) [0x00F6C401]
+	(No symbol) [0x00F8A2BC]
+	(No symbol) [0x00F69586]
+	(No symbol) [0x00F8A614]
+	(No symbol) [0x00F9C482]
+	(No symbol) [0x00F8A0B6]
+	(No symbol) [0x00F67E08]
+	(No symbol) [0x00F68F2D]
+	GetHandleVerifier [0x01308E3A+2540266]
+	GetHandleVerifier [0x01348959+2801161]
+	GetHandleVerifier [0x0134295C+2776588]
+	GetHandleVerifier [0x01132280+612144]
+	(No symbol) [0x01044F6C]
+	(No symbol) [0x010411D8]
+	(No symbol) [0x010412BB]
+	(No symbol) [0x01034857]
+	BaseThreadInitThunk [0x75FD05C9+25]
+	RtlGetAppContainerNamedObjectPath [0x770A77AD+237]
+	RtlGetAppContainerNamedObjectPath [0x770A777D+189]
+
+2023-06-07 17:03:44,871 test_case_step.py[line: 54] WARNING: 运行失败：Message: element not interactable
+  (Session info: chrome=113.0.5672.129)
+Stacktrace:
+Backtrace:
+	GetHandleVerifier [0x010A8893+48451]
+	(No symbol) [0x0103B8A1]
+	(No symbol) [0x00F44F20]
+	(No symbol) [0x00F6CB96]
+	(No symbol) [0x00F6C401]
+	(No symbol) [0x00F8A2BC]
+	(No symbol) [0x00F69586]
+	(No symbol) [0x00F8A614]
+	(No symbol) [0x00F9C482]
+	(No symbol) [0x00F8A0B6]
+	(No symbol) [0x00F67E08]
+	(No symbol) [0x00F68F2D]
+	GetHandleVerifier [0x01308E3A+2540266]
+	GetHandleVerifier [0x01348959+2801161]
+	GetHandleVerifier [0x0134295C+2776588]
+	GetHandleVerifier [0x01132280+612144]
+	(No symbol) [0x01044F6C]
+	(No symbol) [0x010411D8]
+	(No symbol) [0x010412BB]
+	(No symbol) [0x01034857]
+	BaseThreadInitThunk [0x75FD05C9+25]
+	RtlGetAppContainerNamedObjectPath [0x770A77AD+237]
+	RtlGetAppContainerNamedObjectPath [0x770A777D+189]
+，正在进行第2次重试
+2023-06-07 17:03:44,872 test_case_step.py[line: 78] INFO: ======================正在记录用例步骤运行结果到测试报告-用例步骤执行明细表======================
+2023-06-07 17:03:44,873 mydb.py[line: 65] INFO: query：INSERT INTO `website_ui_test_report_for_case_step`(execution_num, plan_id, case_id, step_id, `order`, page, object, exec_operation, input_params, output_params, assert_type, check_pattern, run_times, try_for_failure, run_result, remark, run_time, run_id) VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)  data：('1686128620', '1', 2, 1, 1, 'test_ui->登录页面', '账号输入', '输入', 'zx1', '', '', '', 1, 1, '失败', '步骤运行失败：Message: element not interactable\n  (Session info: chrome=113.0.5672.129)\nStacktrace:\nBacktrace:\n\tGetHandleVerifier [0x010A8893+48451]\n\t(No symbol) [0x0103B8A1]\n\t(No symbol) [0x00F44F20]\n\t(No symbol) [0x00F6CB96]\n\t(No symbol) [0x00F6C401]\n\t(No symbol) [0x00F8A2BC]\n\t(No symbol) [0x00F69586]\n\t(No symbol) [0x00F8A614]\n\t(No symbol) [0x00F9C482]\n\t(No symbol) [0x00F8A0B6]\n\t(No symbol) [0x00F67E08]\n\t(No symbol) [0x00F68F2D]\n\tGetHandleVerifier [0x01308E3A+2540266]\n\tGetHandleVerifier [0x01348959+2801161]\n\tGetHandleVerifier [0x0134295C+2776588]\n\tGetHandleVerifier [0x01132280+612144]\n\t(No symbol) [0x01044F6C]\n\t(No symbol) [0x010411D8]\n\t(No symbol) [0x010412BB]\n\t(No symbol) [0x01034857]\n\tBaseThreadInitThunk [0x75FD05C9+25]\n\tRtlGetAppContainerNamedObjectPath [0x770A77AD+237]\n\tRtlGetAppContainerNamedObjectPath [0x770A777D+189]\n', '2023-06-07 17:03:44', 0)
+2023-06-07 17:03:44,876 mydb.py[line: 73] ERROR: 执行数据库插入操作失败：1406 (22001): Data too long for column 'remark' at row 1
+2023-06-07 17:03:44,877 test_report.py[line: 62] ERROR: 往测试报告-测试用例步骤执行明细表插入运行记录失败：1406 (22001): Data too long for column 'remark' at row 1,提前退出程序
+2023-06-07 17:03:44,877 test_case.py[line: 114] INFO: 正在计算运行耗时
+2023-06-07 17:03:44,877 test_case.py[line: 120] INFO: 正在记录用例运行结果到测试报告-用例执行明细表
+2023-06-07 17:03:44,878 mydb.py[line: 65] INFO: query：INSERT INTO `website_ui_test_report_for_case`(execution_num, plan_id, case_id, case_path, case_name, run_result, remark, run_time, time_took) VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s)  data：('1686128620', '1', 2, 'test_ui', 'ID2-登录测试', '阻塞', '没有找到与用例关联的测试步骤', '2023-06-07 17:03:44', '0天 0小时 0分 0秒')
+2023-06-07 17:03:47,102 test_plan.py[line: 99] INFO: 测试用例执行完毕，正在更新测试报告-测试概况表
+2023-06-07 17:03:47,104 test_report.py[line: 14] INFO: 正在查询运行状态为：成功的用例记录数
+2023-06-07 17:03:47,105 mydb.py[line: 96] INFO: query：SELECT COUNT(id) FROM `website_ui_test_report_for_case` WHERE run_result = '%s' and plan_id = %s AND execution_num =%s  data：('成功', '1', '1686128620')
+2023-06-07 17:03:47,106 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT COUNT(id) FROM `website_ui_test_report_for_case` WHERE run_result = '成功' and plan_id = 1 AND execution_num =1686128620
+2023-06-07 17:03:47,111 test_report.py[line: 14] INFO: 正在查询运行状态为：失败的用例记录数
+2023-06-07 17:03:47,112 mydb.py[line: 96] INFO: query：SELECT COUNT(id) FROM `website_ui_test_report_for_case` WHERE run_result = '%s' and plan_id = %s AND execution_num =%s  data：('失败', '1', '1686128620')
+2023-06-07 17:03:47,114 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT COUNT(id) FROM `website_ui_test_report_for_case` WHERE run_result = '失败' and plan_id = 1 AND execution_num =1686128620
+2023-06-07 17:03:47,119 test_report.py[line: 14] INFO: 正在查询运行状态为：阻塞的用例记录数
+2023-06-07 17:03:47,119 mydb.py[line: 96] INFO: query：SELECT COUNT(id) FROM `website_ui_test_report_for_case` WHERE run_result = '%s' and plan_id = %s AND execution_num =%s  data：('阻塞', '1', '1686128620')
+2023-06-07 17:03:47,119 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT COUNT(id) FROM `website_ui_test_report_for_case` WHERE run_result = '阻塞' and plan_id = 1 AND execution_num =1686128620
+2023-06-07 17:03:47,122 mydb.py[line: 81] INFO: update_query：UPDATE `website_ui_test_report_for_summary` SET end_time='2023-06-07 17:03:47', time_took='0天 0小时 0分 6秒', case_total_num=1, case_pass_num=0, case_fail_num=0, case_block_num=1, remark='部分用例运行出错' WHERE execution_num='1686128620' AND plan_id=1
+2023-06-07 17:03:47,200 running_plan.py[line: 83] INFO: 正在释放资源
+2023-06-07 17:03:47,202 running_plan.py[line: 84] INFO: 正在断开与项目关联的数据库连接
+2023-06-07 17:03:47,204 running_plan.py[line: 90] INFO: 正在清理与项目关联的全局变量
+2023-06-07 17:03:47,205 main.py[line: 56] INFO: 执行失败，正在更新数据库运行计划的运行状态
+2023-06-07 17:03:47,222 mydb.py[line: 81] INFO: update_query：UPDATE `website_running_plan` SET running_status ='运行失败', remark='测试计划["1"]运行失败' WHERE running_plan_num= 1686125776140380
+2023-06-07 17:08:35,503 main.py[line: 26] INFO: 执行当前脚本的Python版本：3.9.5
+2023-06-07 17:08:35,503 main.py[line: 28] INFO: 当前运行模式为：rop
+2023-06-07 17:08:35,504 main.py[line: 31] INFO: 当前运行计划编号为：1686125776140380
+2023-06-07 17:08:35,504 main.py[line: 41] INFO: 正在查询运行计划相关信息
+2023-06-07 17:08:35,504 mydb.py[line: 96] INFO: query：SELECT running_plan_name,project_id, project_name, plan_name, plan_id, valid_flag FROM `website_running_plan` WHERE running_plan_num =%s  data：('1686125776140380',)
+2023-06-07 17:08:35,505 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT running_plan_name,project_id, project_name, plan_name, plan_id, valid_flag FROM `website_running_plan` WHERE running_plan_num =1686125776140380
+2023-06-07 17:08:35,509 main.py[line: 48] INFO: 待运行项目：名称：test_ui，ID：1，关联的测试计划有：测试计划1
+2023-06-07 17:08:35,509 main.py[line: 51] INFO: ======================开始执行运行计划[名称：测试运行计划01]======================
+2023-06-07 17:08:35,509 running_plan.py[line: 24] INFO: 正在查询项目[ID：1,名称：test_ui]相关信息
+2023-06-07 17:08:35,510 mydb.py[line: 96] INFO: query：SELECT home_page, environment_id, valid_flag FROM `website_ui_project_setting` WHERE id = %s  data：(1,)
+2023-06-07 17:08:35,510 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT home_page, environment_id, valid_flag FROM `website_ui_project_setting` WHERE id = 1
+2023-06-07 17:08:35,513 running_plan.py[line: 31] INFO: 正在查询与项目关联的数据库信息
+2023-06-07 17:08:35,513 mydb.py[line: 124] INFO: query：SELECT db_type, db_alias, db_name, db_host, db_port, db_user, db_passwd FROM `website_database_setting` WHERE  locate('UI1', project_id) != 0  AND environment_id= '1'  data：
+2023-06-07 17:08:35,516 running_plan.py[line: 45] INFO: 正在查询与项目关联的全局变量
+2023-06-07 17:08:35,516 mydb.py[line: 124] INFO: query：SELECT `name`, `value` FROM `website_global_variable_setting` WHERE  project_type='UI项目' AND locate('%s', project_id) != 0 AND locate('%s', env_id) != 0   data：(1, 1)
+2023-06-07 17:08:35,519 running_plan.py[line: 60] INFO: ======================开始运行测试项目[名称：test_ui, ID：1]======================
+2023-06-07 17:08:35,520 test_project.py[line: 98] INFO: ======================正在同步更新与待运行测试计划关联的所有用例树节点信息======================
+2023-06-07 17:08:35,520 test_project.py[line: 36] INFO: 待运行计划ID列表：['1']
+2023-06-07 17:08:35,521 test_project.py[line: 38] INFO: 正在查询与测试计划关联的用例树节点
+2023-06-07 17:08:35,521 mydb.py[line: 124] INFO: query：SELECT node_id FROM `website_ui_case_tree_test_plan` WHERE plan_id IN (1) GROUP BY node_id  data：
+2023-06-07 17:08:35,524 test_project.py[line: 52] INFO: 正在查找用例树节点信息
+2023-06-07 17:08:35,525 mydb.py[line: 96] INFO: query：SELECT t1.text, t1.parent_id, COUNT(t2.id) FROM `website_ui_case_tree` AS t1 LEFT JOIN `website_ui_case_tree` AS t2 ON t2.parent_id = t1.id WHERE t1.id = %s  data：(1,)
+2023-06-07 17:08:35,525 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT t1.text, t1.parent_id, COUNT(t2.id) FROM `website_ui_case_tree` AS t1 LEFT JOIN `website_ui_case_tree` AS t2 ON t2.parent_id = t1.id WHERE t1.id = 1
+2023-06-07 17:08:35,528 mydb.py[line: 96] INFO: query：SELECT parent_id, text FROM `website_ui_case_tree` WHERE id = %s  data：(0,)
+2023-06-07 17:08:35,529 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT parent_id, text FROM `website_ui_case_tree` WHERE id = 0
+2023-06-07 17:08:35,531 test_project.py[line: 64] INFO: 正在更新测试计划用例树节点关联表记录
+2023-06-07 17:08:35,532 mydb.py[line: 81] INFO: update_query：UPDATE website_ui_case_tree_test_plan SET node_path='', sub_node_num=1 WHERE plan_id IN (1) AND node_id = 1
+2023-06-07 17:08:35,534 test_project.py[line: 52] INFO: 正在查找用例树节点信息
+2023-06-07 17:08:35,535 mydb.py[line: 96] INFO: query：SELECT t1.text, t1.parent_id, COUNT(t2.id) FROM `website_ui_case_tree` AS t1 LEFT JOIN `website_ui_case_tree` AS t2 ON t2.parent_id = t1.id WHERE t1.id = %s  data：(2,)
+2023-06-07 17:08:35,535 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT t1.text, t1.parent_id, COUNT(t2.id) FROM `website_ui_case_tree` AS t1 LEFT JOIN `website_ui_case_tree` AS t2 ON t2.parent_id = t1.id WHERE t1.id = 2
+2023-06-07 17:08:35,538 mydb.py[line: 96] INFO: query：SELECT parent_id, text FROM `website_ui_case_tree` WHERE id = %s  data：(1,)
+2023-06-07 17:08:35,539 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT parent_id, text FROM `website_ui_case_tree` WHERE id = 1
+2023-06-07 17:08:35,542 mydb.py[line: 96] INFO: query：SELECT parent_id, text FROM `website_ui_case_tree` WHERE id = %s  data：(0,)
+2023-06-07 17:08:35,542 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT parent_id, text FROM `website_ui_case_tree` WHERE id = 0
+2023-06-07 17:08:35,545 test_project.py[line: 64] INFO: 正在更新测试计划用例树节点关联表记录
+2023-06-07 17:08:35,546 mydb.py[line: 81] INFO: update_query：UPDATE website_ui_case_tree_test_plan SET node_path='test_ui', sub_node_num=0 WHERE plan_id IN (1) AND node_id = 2
+2023-06-07 17:08:35,549 test_project.py[line: 104] INFO: 同步更新与待运行测试计划关联的所有用例树节点信息成功
+2023-06-07 17:08:35,549 test_project.py[line: 107] INFO: 正在查询测试计划[ID：1]相关信息
+2023-06-07 17:08:35,550 mydb.py[line: 96] INFO: query：SELECT plan_name, browsers, valid_flag FROM `website_ui_test_plan` WHERE id = %s  data：('1',)
+2023-06-07 17:08:35,550 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT plan_name, browsers, valid_flag FROM `website_ui_test_plan` WHERE id = 1
+2023-06-07 17:08:35,553 test_project.py[line: 113] INFO: ======================开始运行测试计划[名称：测试计划1, ID：1]======================
+2023-06-07 17:08:35,553 test_plan.py[line: 31] INFO: 计划运行的浏览器有：['谷歌']
+2023-06-07 17:08:35,554 test_plan.py[line: 33] INFO: 正在查询测试计划关联的测试用例
+2023-06-07 17:08:35,554 mydb.py[line: 124] INFO: query：SELECT node_id, node_path, node_name FROM `website_ui_case_tree_test_plan` WHERE plan_id = %s AND sub_node_num = 0 ORDER BY `order` ASC  data：('1',)
+2023-06-07 17:08:35,557 test_plan.py[line: 52] INFO: 正在往测试报告-测试概况插入计划执行概要记录
+2023-06-07 17:08:35,558 mydb.py[line: 65] INFO: query：INSERT INTO `website_ui_test_report_for_summary`(execution_num, project_id, plan_id, project_name, plan_name, browser,start_time, end_time, time_took, case_total_num, case_pass_num, case_fail_num, case_block_num, remark) VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s,%s, %s, %s, %s)  data：('1686128915', 1, '1', 'test_ui', '测试计划1', '谷歌', '2023-06-07 17:08:35', '', '', 0, 0, 0, 0, '')
+2023-06-07 17:08:35,720 test_plan.py[line: 55] INFO: 正在获取浏览器驱动
+2023-06-07 17:08:37,214 test_plan.py[line: 65] INFO: 正在打开项目主页：http://192.168.20.157:1003/portal/main_new.do
+2023-06-07 17:08:39,228 test_plan.py[line: 70] INFO: ======================正在【谷歌】浏览器下运行测试用例======================
+2023-06-07 17:08:39,228 test_plan.py[line: 74] INFO: ======================开始运行测试用例[名称：ID2-登录测试, ID:2]======================
+2023-06-07 17:08:39,229 test_case.py[line: 29] INFO: 正在查询测试用例[ID：2, 名称：ID2-登录测试]关联的测试步骤
+2023-06-07 17:08:39,229 mydb.py[line: 124] INFO: query：SELECT id, `order`, object_type, page_name, object, exec_operation, input_params, output_params,assert_type, assert_pattern, run_times, try_for_failure, object_id FROM `website_ui_test_case_step` WHERE case_id=%s AND status='启用' ORDER BY `order` ASC  data：(2,)
+2023-06-07 17:08:39,232 test_case.py[line: 67] INFO: ======================开始运行测试步骤：第 1 步======================
+2023-06-07 17:08:39,233 test_case.py[line: 68] INFO: 所属用例：ID2-登录测试
+2023-06-07 17:08:39,233 test_case.py[line: 69] INFO: 所属用例ID：2
+2023-06-07 17:08:39,233 test_case.py[line: 70] INFO: 步骤ID：5
+2023-06-07 17:08:39,233 test_case.py[line: 71] INFO: 步骤类型：操作系统函数
+2023-06-07 17:08:39,234 test_case.py[line: 72] INFO: 操作对象：智能等待
+2023-06-07 17:08:39,234 test_case.py[line: 73] INFO: 所在页面：--
+2023-06-07 17:08:39,234 test_case.py[line: 74] INFO: 执行操作：CALL
+2023-06-07 17:08:39,234 test_case.py[line: 75] INFO: 输入参数：2
+2023-06-07 17:08:39,235 test_case.py[line: 76] INFO: 断言类型：
+2023-06-07 17:08:39,235 test_case.py[line: 77] INFO: 断言模式：
+
+2023-06-07 17:08:39,236 test_case_step.py[line: 78] INFO: ======================正在记录用例步骤运行结果到测试报告-用例步骤执行明细表======================
+2023-06-07 17:08:39,236 mydb.py[line: 65] INFO: query：INSERT INTO `website_ui_test_report_for_case_step`(execution_num, plan_id, case_id, step_id, `order`, page, object, exec_operation, input_params, output_params, assert_type, check_pattern, run_times, try_for_failure, run_result, remark, run_time, run_id) VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)  data：('1686128915', '1', 2, 5, 1, '--', '智能等待', 'CALL', '2', '', '', '', 1, 1, '成功', '', '2023-06-07 17:08:39', 0)
+2023-06-07 17:08:39,446 test_case.py[line: 67] INFO: ======================开始运行测试步骤：第 2 步======================
+2023-06-07 17:08:39,448 test_case.py[line: 68] INFO: 所属用例：ID2-登录测试
+2023-06-07 17:08:39,453 test_case.py[line: 69] INFO: 所属用例ID：2
+2023-06-07 17:08:39,457 test_case.py[line: 70] INFO: 步骤ID：1
+2023-06-07 17:08:39,458 test_case.py[line: 71] INFO: 步骤类型：操作页面元素
+2023-06-07 17:08:39,460 test_case.py[line: 72] INFO: 操作对象：账号输入
+2023-06-07 17:08:39,468 test_case.py[line: 73] INFO: 所在页面：test_ui->登录页面
+2023-06-07 17:08:39,470 test_case.py[line: 74] INFO: 执行操作：输入
+2023-06-07 17:08:39,472 test_case.py[line: 75] INFO: 输入参数：zx1
+2023-06-07 17:08:39,474 test_case.py[line: 76] INFO: 断言类型：
+2023-06-07 17:08:39,477 test_case.py[line: 77] INFO: 断言模式：
+
+2023-06-07 17:08:39,480 test_case_step.py[line: 41] INFO: 正在查找页面元素选择器
+2023-06-07 17:08:39,481 mydb.py[line: 96] INFO: query：SELECT selector1, selector2 FROM `website_page_element` WHERE  id = %s  data：(2,)
+2023-06-07 17:08:39,485 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT selector1, selector2 FROM `website_page_element` WHERE  id = 2
+2023-06-07 17:08:39,490 test_case_step.py[line: 46] INFO: 正在运行第1次
+2023-06-07 17:08:39,491 seleniumutil.py[line: 362] INFO: 正在根据元素定位器：XPATH=//*[@id='submitA']/img查找元素
+2023-06-07 17:08:39,493 seleniumutil.py[line: 372] INFO: 查找元素采用的适配器：xpath
+2023-06-07 17:08:39,516 seleniumutil.py[line: 373] INFO: 查找元素采用的选择器：//*[@id='submitA']/img
+2023-06-07 17:08:39,517 seleniumutil.py[line: 383] INFO: find_element_by_xpath：//*[@id='submitA']/img
+2023-06-07 17:08:39,567 test_case_step.py[line: 105] INFO: 找到元素：<selenium.webdriver.remote.webelement.WebElement (session="24b78d996fba3f4552c8628a37c766d9", element="A60451B5395758600A1831C53452CB05_element_9")>
+2023-06-07 17:08:39,621 test_case_step.py[line: 132] ERROR: 执行输入操作出错:Message: element not interactable
+  (Session info: chrome=113.0.5672.129)
+Stacktrace:
+Backtrace:
+	GetHandleVerifier [0x010A8893+48451]
+	(No symbol) [0x0103B8A1]
+	(No symbol) [0x00F44F20]
+	(No symbol) [0x00F6CB96]
+	(No symbol) [0x00F6C401]
+	(No symbol) [0x00F8A2BC]
+	(No symbol) [0x00F69586]
+	(No symbol) [0x00F8A614]
+	(No symbol) [0x00F9C482]
+	(No symbol) [0x00F8A0B6]
+	(No symbol) [0x00F67E08]
+	(No symbol) [0x00F68F2D]
+	GetHandleVerifier [0x01308E3A+2540266]
+	GetHandleVerifier [0x01348959+2801161]
+	GetHandleVerifier [0x0134295C+2776588]
+	GetHandleVerifier [0x01132280+612144]
+	(No symbol) [0x01044F6C]
+	(No symbol) [0x010411D8]
+	(No symbol) [0x010412BB]
+	(No symbol) [0x01034857]
+	BaseThreadInitThunk [0x75FD05C9+25]
+	RtlGetAppContainerNamedObjectPath [0x770A77AD+237]
+	RtlGetAppContainerNamedObjectPath [0x770A777D+189]
+
+2023-06-07 17:08:39,623 test_case_step.py[line: 54] WARNING: 运行失败：Message: element not interactable
+  (Session info: chrome=113.0.5672.129)
+Stacktrace:
+Backtrace:
+	GetHandleVerifier [0x010A8893+48451]
+	(No symbol) [0x0103B8A1]
+	(No symbol) [0x00F44F20]
+	(No symbol) [0x00F6CB96]
+	(No symbol) [0x00F6C401]
+	(No symbol) [0x00F8A2BC]
+	(No symbol) [0x00F69586]
+	(No symbol) [0x00F8A614]
+	(No symbol) [0x00F9C482]
+	(No symbol) [0x00F8A0B6]
+	(No symbol) [0x00F67E08]
+	(No symbol) [0x00F68F2D]
+	GetHandleVerifier [0x01308E3A+2540266]
+	GetHandleVerifier [0x01348959+2801161]
+	GetHandleVerifier [0x0134295C+2776588]
+	GetHandleVerifier [0x01132280+612144]
+	(No symbol) [0x01044F6C]
+	(No symbol) [0x010411D8]
+	(No symbol) [0x010412BB]
+	(No symbol) [0x01034857]
+	BaseThreadInitThunk [0x75FD05C9+25]
+	RtlGetAppContainerNamedObjectPath [0x770A77AD+237]
+	RtlGetAppContainerNamedObjectPath [0x770A777D+189]
+，正在进行第1次重试
+2023-06-07 17:08:39,624 seleniumutil.py[line: 362] INFO: 正在根据元素定位器：XPATH=//*[@id='submitA']/img查找元素
+2023-06-07 17:08:39,625 seleniumutil.py[line: 372] INFO: 查找元素采用的适配器：xpath
+2023-06-07 17:08:39,625 seleniumutil.py[line: 373] INFO: 查找元素采用的选择器：//*[@id='submitA']/img
+2023-06-07 17:08:39,625 seleniumutil.py[line: 383] INFO: find_element_by_xpath：//*[@id='submitA']/img
+2023-06-07 17:08:39,643 test_case_step.py[line: 105] INFO: 找到元素：<selenium.webdriver.remote.webelement.WebElement (session="24b78d996fba3f4552c8628a37c766d9", element="A60451B5395758600A1831C53452CB05_element_9")>
+2023-06-07 17:08:39,672 test_case_step.py[line: 132] ERROR: 执行输入操作出错:Message: element not interactable
+  (Session info: chrome=113.0.5672.129)
+Stacktrace:
+Backtrace:
+	GetHandleVerifier [0x010A8893+48451]
+	(No symbol) [0x0103B8A1]
+	(No symbol) [0x00F44F20]
+	(No symbol) [0x00F6CB96]
+	(No symbol) [0x00F6C401]
+	(No symbol) [0x00F8A2BC]
+	(No symbol) [0x00F69586]
+	(No symbol) [0x00F8A614]
+	(No symbol) [0x00F9C482]
+	(No symbol) [0x00F8A0B6]
+	(No symbol) [0x00F67E08]
+	(No symbol) [0x00F68F2D]
+	GetHandleVerifier [0x01308E3A+2540266]
+	GetHandleVerifier [0x01348959+2801161]
+	GetHandleVerifier [0x0134295C+2776588]
+	GetHandleVerifier [0x01132280+612144]
+	(No symbol) [0x01044F6C]
+	(No symbol) [0x010411D8]
+	(No symbol) [0x010412BB]
+	(No symbol) [0x01034857]
+	BaseThreadInitThunk [0x75FD05C9+25]
+	RtlGetAppContainerNamedObjectPath [0x770A77AD+237]
+	RtlGetAppContainerNamedObjectPath [0x770A777D+189]
+
+2023-06-07 17:08:39,674 test_case_step.py[line: 54] WARNING: 运行失败：Message: element not interactable
+  (Session info: chrome=113.0.5672.129)
+Stacktrace:
+Backtrace:
+	GetHandleVerifier [0x010A8893+48451]
+	(No symbol) [0x0103B8A1]
+	(No symbol) [0x00F44F20]
+	(No symbol) [0x00F6CB96]
+	(No symbol) [0x00F6C401]
+	(No symbol) [0x00F8A2BC]
+	(No symbol) [0x00F69586]
+	(No symbol) [0x00F8A614]
+	(No symbol) [0x00F9C482]
+	(No symbol) [0x00F8A0B6]
+	(No symbol) [0x00F67E08]
+	(No symbol) [0x00F68F2D]
+	GetHandleVerifier [0x01308E3A+2540266]
+	GetHandleVerifier [0x01348959+2801161]
+	GetHandleVerifier [0x0134295C+2776588]
+	GetHandleVerifier [0x01132280+612144]
+	(No symbol) [0x01044F6C]
+	(No symbol) [0x010411D8]
+	(No symbol) [0x010412BB]
+	(No symbol) [0x01034857]
+	BaseThreadInitThunk [0x75FD05C9+25]
+	RtlGetAppContainerNamedObjectPath [0x770A77AD+237]
+	RtlGetAppContainerNamedObjectPath [0x770A777D+189]
+，正在进行第2次重试
+2023-06-07 17:08:39,676 test_case_step.py[line: 46] INFO: 正在运行第2次
+2023-06-07 17:08:39,676 seleniumutil.py[line: 362] INFO: 正在根据元素定位器：XPATH=//*[@id='submitA']/img查找元素
+2023-06-07 17:08:39,676 seleniumutil.py[line: 372] INFO: 查找元素采用的适配器：xpath
+2023-06-07 17:08:39,677 seleniumutil.py[line: 373] INFO: 查找元素采用的选择器：//*[@id='submitA']/img
+2023-06-07 17:08:39,677 seleniumutil.py[line: 383] INFO: find_element_by_xpath：//*[@id='submitA']/img
+2023-06-07 17:08:39,692 test_case_step.py[line: 105] INFO: 找到元素：<selenium.webdriver.remote.webelement.WebElement (session="24b78d996fba3f4552c8628a37c766d9", element="A60451B5395758600A1831C53452CB05_element_9")>
+2023-06-07 17:08:39,722 test_case_step.py[line: 132] ERROR: 执行输入操作出错:Message: element not interactable
+  (Session info: chrome=113.0.5672.129)
+Stacktrace:
+Backtrace:
+	GetHandleVerifier [0x010A8893+48451]
+	(No symbol) [0x0103B8A1]
+	(No symbol) [0x00F44F20]
+	(No symbol) [0x00F6CB96]
+	(No symbol) [0x00F6C401]
+	(No symbol) [0x00F8A2BC]
+	(No symbol) [0x00F69586]
+	(No symbol) [0x00F8A614]
+	(No symbol) [0x00F9C482]
+	(No symbol) [0x00F8A0B6]
+	(No symbol) [0x00F67E08]
+	(No symbol) [0x00F68F2D]
+	GetHandleVerifier [0x01308E3A+2540266]
+	GetHandleVerifier [0x01348959+2801161]
+	GetHandleVerifier [0x0134295C+2776588]
+	GetHandleVerifier [0x01132280+612144]
+	(No symbol) [0x01044F6C]
+	(No symbol) [0x010411D8]
+	(No symbol) [0x010412BB]
+	(No symbol) [0x01034857]
+	BaseThreadInitThunk [0x75FD05C9+25]
+	RtlGetAppContainerNamedObjectPath [0x770A77AD+237]
+	RtlGetAppContainerNamedObjectPath [0x770A777D+189]
+
+2023-06-07 17:08:39,724 test_case_step.py[line: 54] WARNING: 运行失败：Message: element not interactable
+  (Session info: chrome=113.0.5672.129)
+Stacktrace:
+Backtrace:
+	GetHandleVerifier [0x010A8893+48451]
+	(No symbol) [0x0103B8A1]
+	(No symbol) [0x00F44F20]
+	(No symbol) [0x00F6CB96]
+	(No symbol) [0x00F6C401]
+	(No symbol) [0x00F8A2BC]
+	(No symbol) [0x00F69586]
+	(No symbol) [0x00F8A614]
+	(No symbol) [0x00F9C482]
+	(No symbol) [0x00F8A0B6]
+	(No symbol) [0x00F67E08]
+	(No symbol) [0x00F68F2D]
+	GetHandleVerifier [0x01308E3A+2540266]
+	GetHandleVerifier [0x01348959+2801161]
+	GetHandleVerifier [0x0134295C+2776588]
+	GetHandleVerifier [0x01132280+612144]
+	(No symbol) [0x01044F6C]
+	(No symbol) [0x010411D8]
+	(No symbol) [0x010412BB]
+	(No symbol) [0x01034857]
+	BaseThreadInitThunk [0x75FD05C9+25]
+	RtlGetAppContainerNamedObjectPath [0x770A77AD+237]
+	RtlGetAppContainerNamedObjectPath [0x770A777D+189]
+，正在进行第1次重试
+2023-06-07 17:08:39,725 seleniumutil.py[line: 362] INFO: 正在根据元素定位器：XPATH=//*[@id='submitA']/img查找元素
+2023-06-07 17:08:39,725 seleniumutil.py[line: 372] INFO: 查找元素采用的适配器：xpath
+2023-06-07 17:08:39,726 seleniumutil.py[line: 373] INFO: 查找元素采用的选择器：//*[@id='submitA']/img
+2023-06-07 17:08:39,726 seleniumutil.py[line: 383] INFO: find_element_by_xpath：//*[@id='submitA']/img
+2023-06-07 17:08:39,741 test_case_step.py[line: 105] INFO: 找到元素：<selenium.webdriver.remote.webelement.WebElement (session="24b78d996fba3f4552c8628a37c766d9", element="A60451B5395758600A1831C53452CB05_element_9")>
+2023-06-07 17:08:39,770 test_case_step.py[line: 132] ERROR: 执行输入操作出错:Message: element not interactable
+  (Session info: chrome=113.0.5672.129)
+Stacktrace:
+Backtrace:
+	GetHandleVerifier [0x010A8893+48451]
+	(No symbol) [0x0103B8A1]
+	(No symbol) [0x00F44F20]
+	(No symbol) [0x00F6CB96]
+	(No symbol) [0x00F6C401]
+	(No symbol) [0x00F8A2BC]
+	(No symbol) [0x00F69586]
+	(No symbol) [0x00F8A614]
+	(No symbol) [0x00F9C482]
+	(No symbol) [0x00F8A0B6]
+	(No symbol) [0x00F67E08]
+	(No symbol) [0x00F68F2D]
+	GetHandleVerifier [0x01308E3A+2540266]
+	GetHandleVerifier [0x01348959+2801161]
+	GetHandleVerifier [0x0134295C+2776588]
+	GetHandleVerifier [0x01132280+612144]
+	(No symbol) [0x01044F6C]
+	(No symbol) [0x010411D8]
+	(No symbol) [0x010412BB]
+	(No symbol) [0x01034857]
+	BaseThreadInitThunk [0x75FD05C9+25]
+	RtlGetAppContainerNamedObjectPath [0x770A77AD+237]
+	RtlGetAppContainerNamedObjectPath [0x770A777D+189]
+
+2023-06-07 17:08:39,772 test_case_step.py[line: 54] WARNING: 运行失败：Message: element not interactable
+  (Session info: chrome=113.0.5672.129)
+Stacktrace:
+Backtrace:
+	GetHandleVerifier [0x010A8893+48451]
+	(No symbol) [0x0103B8A1]
+	(No symbol) [0x00F44F20]
+	(No symbol) [0x00F6CB96]
+	(No symbol) [0x00F6C401]
+	(No symbol) [0x00F8A2BC]
+	(No symbol) [0x00F69586]
+	(No symbol) [0x00F8A614]
+	(No symbol) [0x00F9C482]
+	(No symbol) [0x00F8A0B6]
+	(No symbol) [0x00F67E08]
+	(No symbol) [0x00F68F2D]
+	GetHandleVerifier [0x01308E3A+2540266]
+	GetHandleVerifier [0x01348959+2801161]
+	GetHandleVerifier [0x0134295C+2776588]
+	GetHandleVerifier [0x01132280+612144]
+	(No symbol) [0x01044F6C]
+	(No symbol) [0x010411D8]
+	(No symbol) [0x010412BB]
+	(No symbol) [0x01034857]
+	BaseThreadInitThunk [0x75FD05C9+25]
+	RtlGetAppContainerNamedObjectPath [0x770A77AD+237]
+	RtlGetAppContainerNamedObjectPath [0x770A777D+189]
+，正在进行第2次重试
+2023-06-07 17:08:39,774 test_case_step.py[line: 78] INFO: ======================正在记录用例步骤运行结果到测试报告-用例步骤执行明细表======================
+2023-06-07 17:08:39,774 mydb.py[line: 65] INFO: query：INSERT INTO `website_ui_test_report_for_case_step`(execution_num, plan_id, case_id, step_id, `order`, page, object, exec_operation, input_params, output_params, assert_type, check_pattern, run_times, try_for_failure, run_result, remark, run_time, run_id) VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)  data：('1686128915', '1', 2, 1, 2, 'test_ui->登录页面', '账号输入', '输入', 'zx1', '', '', '', 1, 1, '失败', '步骤运行失败：Message: element not interactable\n  (Session info: chrome=113.0.5672.129)\nStacktrace:\nBacktrace:\n\tGetHandleVerifier [0x010A8893+48451]\n\t(No symbol) [0x0103B8A1]\n\t(No symbol) [0x00F44F20]\n\t(No symbol) [0x00F6CB96]\n\t(No symbol) [0x00F6C401]\n\t(No symbol) [0x00F8A2BC]\n\t(No symbol) [0x00F69586]\n\t(No symbol) [0x00F8A614]\n\t(No symbol) [0x00F9C482]\n\t(No symbol) [0x00F8A0B6]\n\t(No symbol) [0x00F67E08]\n\t(No symbol) [0x00F68F2D]\n\tGetHandleVerifier [0x01308E3A+2540266]\n\tGetHandleVerifier [0x01348959+2801161]\n\tGetHandleVerifier [0x0134295C+2776588]\n\tGetHandleVerifier [0x01132280+612144]\n\t(No symbol) [0x01044F6C]\n\t(No symbol) [0x010411D8]\n\t(No symbol) [0x010412BB]\n\t(No symbol) [0x01034857]\n\tBaseThreadInitThunk [0x75FD05C9+25]\n\tRtlGetAppContainerNamedObjectPath [0x770A77AD+237]\n\tRtlGetAppContainerNamedObjectPath [0x770A777D+189]\n', '2023-06-07 17:08:39', 0)
+2023-06-07 17:08:39,777 mydb.py[line: 73] ERROR: 执行数据库插入操作失败：1406 (22001): Data too long for column 'remark' at row 1
+2023-06-07 17:08:39,779 test_report.py[line: 62] ERROR: 往测试报告-测试用例步骤执行明细表插入运行记录失败：1406 (22001): Data too long for column 'remark' at row 1,提前退出程序
+2023-06-07 17:08:39,779 test_case.py[line: 114] INFO: 正在计算运行耗时
+2023-06-07 17:08:39,779 test_case.py[line: 120] INFO: 正在记录用例运行结果到测试报告-用例执行明细表
+2023-06-07 17:08:39,779 mydb.py[line: 65] INFO: query：INSERT INTO `website_ui_test_report_for_case`(execution_num, plan_id, case_id, case_path, case_name, run_result, remark, run_time, time_took) VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s)  data：('1686128915', '1', 2, 'test_ui', 'ID2-登录测试', '成功', '', '2023-06-07 17:08:39', '0天 0小时 0分 0秒')
+2023-06-07 17:08:42,289 test_plan.py[line: 99] INFO: 测试用例执行完毕，正在更新测试报告-测试概况表
+2023-06-07 17:08:42,289 test_report.py[line: 14] INFO: 正在查询运行状态为：成功的用例记录数
+2023-06-07 17:08:42,290 mydb.py[line: 96] INFO: query：SELECT COUNT(id) FROM `website_ui_test_report_for_case` WHERE run_result = '%s' and plan_id = %s AND execution_num =%s  data：('成功', '1', '1686128915')
+2023-06-07 17:08:42,290 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT COUNT(id) FROM `website_ui_test_report_for_case` WHERE run_result = '成功' and plan_id = 1 AND execution_num =1686128915
+2023-06-07 17:08:42,293 test_report.py[line: 14] INFO: 正在查询运行状态为：失败的用例记录数
+2023-06-07 17:08:42,293 mydb.py[line: 96] INFO: query：SELECT COUNT(id) FROM `website_ui_test_report_for_case` WHERE run_result = '%s' and plan_id = %s AND execution_num =%s  data：('失败', '1', '1686128915')
+2023-06-07 17:08:42,293 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT COUNT(id) FROM `website_ui_test_report_for_case` WHERE run_result = '失败' and plan_id = 1 AND execution_num =1686128915
+2023-06-07 17:08:42,296 test_report.py[line: 14] INFO: 正在查询运行状态为：阻塞的用例记录数
+2023-06-07 17:08:42,297 mydb.py[line: 96] INFO: query：SELECT COUNT(id) FROM `website_ui_test_report_for_case` WHERE run_result = '%s' and plan_id = %s AND execution_num =%s  data：('阻塞', '1', '1686128915')
+2023-06-07 17:08:42,297 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT COUNT(id) FROM `website_ui_test_report_for_case` WHERE run_result = '阻塞' and plan_id = 1 AND execution_num =1686128915
+2023-06-07 17:08:42,300 mydb.py[line: 81] INFO: update_query：UPDATE `website_ui_test_report_for_summary` SET end_time='2023-06-07 17:08:42', time_took='0天 0小时 0分 6秒', case_total_num=1, case_pass_num=1, case_fail_num=0, case_block_num=0, remark='' WHERE execution_num='1686128915' AND plan_id=1
+2023-06-07 17:08:42,390 running_plan.py[line: 83] INFO: 正在释放资源
+2023-06-07 17:08:42,390 running_plan.py[line: 84] INFO: 正在断开与项目关联的数据库连接
+2023-06-07 17:08:42,390 running_plan.py[line: 90] INFO: 正在清理与项目关联的全局变量
+2023-06-07 17:08:42,391 main.py[line: 54] INFO: 执行成功，正在更新数据库运行计划的运行状态
+2023-06-07 17:08:42,391 mydb.py[line: 81] INFO: update_query：UPDATE `website_running_plan` SET running_status ='运行成功', remark='' WHERE running_plan_num= 1686125776140380

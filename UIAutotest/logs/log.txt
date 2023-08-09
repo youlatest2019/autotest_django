@@ -1,0 +1,148 @@
+2023-08-01 14:54:59,163 main.py[line: 26] INFO: 执行当前脚本的Python版本：3.9.5
+2023-08-01 14:54:59,276 main.py[line: 28] INFO: 当前运行模式为：rop
+2023-08-01 14:54:59,283 main.py[line: 31] INFO: 当前运行计划编号为：1686290734016043
+2023-08-01 14:54:59,287 main.py[line: 41] INFO: 正在查询运行计划相关信息
+2023-08-01 14:54:59,291 mydb.py[line: 96] INFO: query：SELECT running_plan_name,project_id, project_name, plan_name, plan_id, valid_flag FROM `website_running_plan` WHERE running_plan_num =%s  data：('1686290734016043',)
+2023-08-01 14:54:59,314 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT running_plan_name,project_id, project_name, plan_name, plan_id, valid_flag FROM `website_running_plan` WHERE running_plan_num =1686290734016043
+2023-08-01 14:54:59,353 main.py[line: 48] INFO: 待运行项目：名称：test_ui，ID：1，关联的测试计划有：test11
+2023-08-01 14:54:59,357 main.py[line: 51] INFO: ======================开始执行运行计划[名称：风高放火的]======================
+2023-08-01 14:54:59,362 running_plan.py[line: 24] INFO: 正在查询项目[ID：1,名称：test_ui]相关信息
+2023-08-01 14:54:59,385 mydb.py[line: 96] INFO: query：SELECT home_page, environment_id, valid_flag FROM `website_ui_project_setting` WHERE id = %s  data：(1,)
+2023-08-01 14:54:59,387 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT home_page, environment_id, valid_flag FROM `website_ui_project_setting` WHERE id = 1
+2023-08-01 14:54:59,393 running_plan.py[line: 31] INFO: 正在查询与项目关联的数据库信息
+2023-08-01 14:54:59,395 mydb.py[line: 124] INFO: query：SELECT db_type, db_alias, db_name, db_host, db_port, db_user, db_passwd FROM `website_database_setting` WHERE  locate('UI1', project_id) != 0  AND environment_id= '1'  data：
+2023-08-01 14:54:59,473 running_plan.py[line: 45] INFO: 正在查询与项目关联的全局变量
+2023-08-01 14:54:59,474 mydb.py[line: 124] INFO: query：SELECT `name`, `value` FROM `website_global_variable_setting` WHERE  project_type='UI项目' AND locate('%s', project_id) != 0 AND locate('%s', env_id) != 0   data：(1, 1)
+2023-08-01 14:54:59,587 running_plan.py[line: 60] INFO: ======================开始运行测试项目[名称：test_ui, ID：1]======================
+2023-08-01 14:54:59,589 test_project.py[line: 98] INFO: ======================正在同步更新与待运行测试计划关联的所有用例树节点信息======================
+2023-08-01 14:54:59,601 test_project.py[line: 36] INFO: 待运行计划ID列表：['3']
+2023-08-01 14:54:59,603 test_project.py[line: 38] INFO: 正在查询与测试计划关联的用例树节点
+2023-08-01 14:54:59,605 mydb.py[line: 124] INFO: query：SELECT node_id FROM `website_ui_case_tree_test_plan` WHERE plan_id IN (3) GROUP BY node_id  data：
+2023-08-01 14:54:59,620 test_project.py[line: 52] INFO: 正在查找用例树节点信息
+2023-08-01 14:54:59,622 mydb.py[line: 96] INFO: query：SELECT t1.text, t1.parent_id, COUNT(t2.id) FROM `website_ui_case_tree` AS t1 LEFT JOIN `website_ui_case_tree` AS t2 ON t2.parent_id = t1.id WHERE t1.id = %s  data：(3,)
+2023-08-01 14:54:59,623 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT t1.text, t1.parent_id, COUNT(t2.id) FROM `website_ui_case_tree` AS t1 LEFT JOIN `website_ui_case_tree` AS t2 ON t2.parent_id = t1.id WHERE t1.id = 3
+2023-08-01 14:54:59,676 mydb.py[line: 96] INFO: query：SELECT parent_id, text FROM `website_ui_case_tree` WHERE id = %s  data：(7,)
+2023-08-01 14:54:59,677 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT parent_id, text FROM `website_ui_case_tree` WHERE id = 7
+2023-08-01 14:54:59,681 mydb.py[line: 96] INFO: query：SELECT parent_id, text FROM `website_ui_case_tree` WHERE id = %s  data：(4,)
+2023-08-01 14:54:59,682 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT parent_id, text FROM `website_ui_case_tree` WHERE id = 4
+2023-08-01 14:54:59,685 mydb.py[line: 96] INFO: query：SELECT parent_id, text FROM `website_ui_case_tree` WHERE id = %s  data：(1,)
+2023-08-01 14:54:59,686 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT parent_id, text FROM `website_ui_case_tree` WHERE id = 1
+2023-08-01 14:54:59,689 mydb.py[line: 96] INFO: query：SELECT parent_id, text FROM `website_ui_case_tree` WHERE id = %s  data：(0,)
+2023-08-01 14:54:59,690 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT parent_id, text FROM `website_ui_case_tree` WHERE id = 0
+2023-08-01 14:54:59,693 test_project.py[line: 64] INFO: 正在更新测试计划用例树节点关联表记录
+2023-08-01 14:54:59,694 mydb.py[line: 81] INFO: update_query：UPDATE website_ui_case_tree_test_plan SET node_path='test_ui->ID4-报送管理_金数->ID7-准备金缴存页面', sub_node_num=0 WHERE plan_id IN (3) AND node_id = 3
+2023-08-01 14:54:59,697 test_project.py[line: 52] INFO: 正在查找用例树节点信息
+2023-08-01 14:54:59,699 mydb.py[line: 96] INFO: query：SELECT t1.text, t1.parent_id, COUNT(t2.id) FROM `website_ui_case_tree` AS t1 LEFT JOIN `website_ui_case_tree` AS t2 ON t2.parent_id = t1.id WHERE t1.id = %s  data：(4,)
+2023-08-01 14:54:59,701 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT t1.text, t1.parent_id, COUNT(t2.id) FROM `website_ui_case_tree` AS t1 LEFT JOIN `website_ui_case_tree` AS t2 ON t2.parent_id = t1.id WHERE t1.id = 4
+2023-08-01 14:54:59,707 mydb.py[line: 96] INFO: query：SELECT parent_id, text FROM `website_ui_case_tree` WHERE id = %s  data：(1,)
+2023-08-01 14:54:59,709 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT parent_id, text FROM `website_ui_case_tree` WHERE id = 1
+2023-08-01 14:54:59,715 mydb.py[line: 96] INFO: query：SELECT parent_id, text FROM `website_ui_case_tree` WHERE id = %s  data：(0,)
+2023-08-01 14:54:59,717 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT parent_id, text FROM `website_ui_case_tree` WHERE id = 0
+2023-08-01 14:54:59,723 test_project.py[line: 64] INFO: 正在更新测试计划用例树节点关联表记录
+2023-08-01 14:54:59,725 mydb.py[line: 81] INFO: update_query：UPDATE website_ui_case_tree_test_plan SET node_path='test_ui', sub_node_num=2 WHERE plan_id IN (3) AND node_id = 4
+2023-08-01 14:54:59,730 test_project.py[line: 52] INFO: 正在查找用例树节点信息
+2023-08-01 14:54:59,732 mydb.py[line: 96] INFO: query：SELECT t1.text, t1.parent_id, COUNT(t2.id) FROM `website_ui_case_tree` AS t1 LEFT JOIN `website_ui_case_tree` AS t2 ON t2.parent_id = t1.id WHERE t1.id = %s  data：(5,)
+2023-08-01 14:54:59,734 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT t1.text, t1.parent_id, COUNT(t2.id) FROM `website_ui_case_tree` AS t1 LEFT JOIN `website_ui_case_tree` AS t2 ON t2.parent_id = t1.id WHERE t1.id = 5
+2023-08-01 14:54:59,740 mydb.py[line: 96] INFO: query：SELECT parent_id, text FROM `website_ui_case_tree` WHERE id = %s  data：(6,)
+2023-08-01 14:54:59,742 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT parent_id, text FROM `website_ui_case_tree` WHERE id = 6
+2023-08-01 14:54:59,748 mydb.py[line: 96] INFO: query：SELECT parent_id, text FROM `website_ui_case_tree` WHERE id = %s  data：(4,)
+2023-08-01 14:54:59,751 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT parent_id, text FROM `website_ui_case_tree` WHERE id = 4
+2023-08-01 14:54:59,756 mydb.py[line: 96] INFO: query：SELECT parent_id, text FROM `website_ui_case_tree` WHERE id = %s  data：(1,)
+2023-08-01 14:54:59,759 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT parent_id, text FROM `website_ui_case_tree` WHERE id = 1
+2023-08-01 14:54:59,764 mydb.py[line: 96] INFO: query：SELECT parent_id, text FROM `website_ui_case_tree` WHERE id = %s  data：(0,)
+2023-08-01 14:54:59,766 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT parent_id, text FROM `website_ui_case_tree` WHERE id = 0
+2023-08-01 14:54:59,772 test_project.py[line: 64] INFO: 正在更新测试计划用例树节点关联表记录
+2023-08-01 14:54:59,774 mydb.py[line: 81] INFO: update_query：UPDATE website_ui_case_tree_test_plan SET node_path='test_ui->ID4-报送管理_金数->ID6-报送任务页面', sub_node_num=0 WHERE plan_id IN (3) AND node_id = 5
+2023-08-01 14:54:59,780 test_project.py[line: 52] INFO: 正在查找用例树节点信息
+2023-08-01 14:54:59,783 mydb.py[line: 96] INFO: query：SELECT t1.text, t1.parent_id, COUNT(t2.id) FROM `website_ui_case_tree` AS t1 LEFT JOIN `website_ui_case_tree` AS t2 ON t2.parent_id = t1.id WHERE t1.id = %s  data：(6,)
+2023-08-01 14:54:59,785 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT t1.text, t1.parent_id, COUNT(t2.id) FROM `website_ui_case_tree` AS t1 LEFT JOIN `website_ui_case_tree` AS t2 ON t2.parent_id = t1.id WHERE t1.id = 6
+2023-08-01 14:54:59,789 mydb.py[line: 96] INFO: query：SELECT parent_id, text FROM `website_ui_case_tree` WHERE id = %s  data：(4,)
+2023-08-01 14:54:59,791 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT parent_id, text FROM `website_ui_case_tree` WHERE id = 4
+2023-08-01 14:54:59,795 mydb.py[line: 96] INFO: query：SELECT parent_id, text FROM `website_ui_case_tree` WHERE id = %s  data：(1,)
+2023-08-01 14:54:59,796 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT parent_id, text FROM `website_ui_case_tree` WHERE id = 1
+2023-08-01 14:54:59,800 mydb.py[line: 96] INFO: query：SELECT parent_id, text FROM `website_ui_case_tree` WHERE id = %s  data：(0,)
+2023-08-01 14:54:59,801 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT parent_id, text FROM `website_ui_case_tree` WHERE id = 0
+2023-08-01 14:54:59,805 test_project.py[line: 64] INFO: 正在更新测试计划用例树节点关联表记录
+2023-08-01 14:54:59,807 mydb.py[line: 81] INFO: update_query：UPDATE website_ui_case_tree_test_plan SET node_path='test_ui->ID4-报送管理_金数', sub_node_num=1 WHERE plan_id IN (3) AND node_id = 6
+2023-08-01 14:54:59,811 test_project.py[line: 52] INFO: 正在查找用例树节点信息
+2023-08-01 14:54:59,812 mydb.py[line: 96] INFO: query：SELECT t1.text, t1.parent_id, COUNT(t2.id) FROM `website_ui_case_tree` AS t1 LEFT JOIN `website_ui_case_tree` AS t2 ON t2.parent_id = t1.id WHERE t1.id = %s  data：(7,)
+2023-08-01 14:54:59,813 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT t1.text, t1.parent_id, COUNT(t2.id) FROM `website_ui_case_tree` AS t1 LEFT JOIN `website_ui_case_tree` AS t2 ON t2.parent_id = t1.id WHERE t1.id = 7
+2023-08-01 14:54:59,817 mydb.py[line: 96] INFO: query：SELECT parent_id, text FROM `website_ui_case_tree` WHERE id = %s  data：(4,)
+2023-08-01 14:54:59,818 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT parent_id, text FROM `website_ui_case_tree` WHERE id = 4
+2023-08-01 14:54:59,822 mydb.py[line: 96] INFO: query：SELECT parent_id, text FROM `website_ui_case_tree` WHERE id = %s  data：(1,)
+2023-08-01 14:54:59,823 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT parent_id, text FROM `website_ui_case_tree` WHERE id = 1
+2023-08-01 14:54:59,827 mydb.py[line: 96] INFO: query：SELECT parent_id, text FROM `website_ui_case_tree` WHERE id = %s  data：(0,)
+2023-08-01 14:54:59,828 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT parent_id, text FROM `website_ui_case_tree` WHERE id = 0
+2023-08-01 14:54:59,831 test_project.py[line: 64] INFO: 正在更新测试计划用例树节点关联表记录
+2023-08-01 14:54:59,832 mydb.py[line: 81] INFO: update_query：UPDATE website_ui_case_tree_test_plan SET node_path='test_ui->ID4-报送管理_金数', sub_node_num=1 WHERE plan_id IN (3) AND node_id = 7
+2023-08-01 14:54:59,835 test_project.py[line: 104] INFO: 同步更新与待运行测试计划关联的所有用例树节点信息成功
+2023-08-01 14:54:59,837 test_project.py[line: 107] INFO: 正在查询测试计划[ID：3]相关信息
+2023-08-01 14:54:59,837 mydb.py[line: 96] INFO: query：SELECT plan_name, browsers, valid_flag FROM `website_ui_test_plan` WHERE id = %s  data：('3',)
+2023-08-01 14:54:59,839 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT plan_name, browsers, valid_flag FROM `website_ui_test_plan` WHERE id = 3
+2023-08-01 14:54:59,842 test_project.py[line: 113] INFO: ======================开始运行测试计划[名称：test11, ID：3]======================
+2023-08-01 14:54:59,843 test_plan.py[line: 31] INFO: 计划运行的浏览器有：['谷歌']
+2023-08-01 14:54:59,859 test_plan.py[line: 33] INFO: 正在查询测试计划关联的测试用例
+2023-08-01 14:54:59,860 mydb.py[line: 124] INFO: query：SELECT node_id, node_path, node_name FROM `website_ui_case_tree_test_plan` WHERE plan_id = %s AND sub_node_num = 0 ORDER BY `order` ASC  data：('3',)
+2023-08-01 14:54:59,864 test_plan.py[line: 52] INFO: 正在往测试报告-测试概况插入计划执行概要记录
+2023-08-01 14:54:59,865 mydb.py[line: 65] INFO: query：INSERT INTO `website_ui_test_report_for_summary`(execution_num, project_id, plan_id, project_name, plan_name, browser,start_time, end_time, time_took, case_total_num, case_pass_num, case_fail_num, case_block_num, remark) VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s,%s, %s, %s, %s)  data：('1690872899', 1, '3', 'test_ui', 'test11', '谷歌', '2023-08-01 14:54:59', '', '', 0, 0, 0, 0, '')
+2023-08-01 14:54:59,951 test_plan.py[line: 55] INFO: 正在获取浏览器驱动
+2023-08-01 14:55:05,871 seleniumutil.py[line: 36] ERROR: 设置浏览器驱动出错：Message: session not created: This version of ChromeDriver only supports Chrome version 113
+Current browser version is 115.0.5790.110 with binary path C:\Program Files\Google\Chrome\Application\chrome.exe
+Stacktrace:
+Backtrace:
+	GetHandleVerifier [0x01258893+48451]
+	(No symbol) [0x011EB8A1]
+	(No symbol) [0x010F5058]
+	(No symbol) [0x01115D9C]
+	(No symbol) [0x01111AA3]
+	(No symbol) [0x01110019]
+	(No symbol) [0x01140798]
+	(No symbol) [0x0114047C]
+	(No symbol) [0x0113A0B6]
+	(No symbol) [0x01117E08]
+	(No symbol) [0x01118F2D]
+	GetHandleVerifier [0x014B8E3A+2540266]
+	GetHandleVerifier [0x014F8959+2801161]
+	GetHandleVerifier [0x014F295C+2776588]
+	GetHandleVerifier [0x012E2280+612144]
+	(No symbol) [0x011F4F6C]
+	(No symbol) [0x011F11D8]
+	(No symbol) [0x011F12BB]
+	(No symbol) [0x011E4857]
+	BaseThreadInitThunk [0x75E105C9+25]
+	RtlGetAppContainerNamedObjectPath [0x773377AD+237]
+	RtlGetAppContainerNamedObjectPath [0x7733777D+189]
+
+2023-08-01 14:55:05,966 test_plan.py[line: 58] ERROR: 获取浏览器驱动出错，跳过该浏览器的执行
+2023-08-01 14:55:05,967 mydb.py[line: 81] INFO: update_query：UPDATE `website_ui_test_report_for_summary` SET end_time='', time_took='', case_total_num=0, case_pass_num=0, case_fail_num=0, case_block_num=0, remark='设置浏览器驱动出错：Message: session not created: This version of ChromeDriver only supports Chrome version 113
+Current browser version is 115.0.5790.110 with binary path C:\Program Files\Google\Chrome\Application\chrome.exe
+Stacktrace:
+Backtrace:
+	GetHandleVerifier [0x01258893+48451]
+	(No symbol) [0x011EB8A1]
+	(No symbol) [0x010F5058]
+	(No symbol) [0x01115D9C]
+	(No symbol) [0x01111AA3]
+	(No symbol) [0x01110019]
+	(No symbol) [0x01140798]
+	(No symbol) [0x0114047C]
+	(No symbol) [0x0113A0B6]
+	(No symbol) [0x01117E08]
+	(No symbol) [0x01118F2D]
+	GetHandleVerifier [0x014B8E3A+2540266]
+	GetHandleVerifier [0x014F8959+2801161]
+	GetHandleVerifier [0x014F295C+2776588]
+	GetHandleVerifier [0x012E2280+612144]
+	(No symbol) [0x011F4F6C]
+	(No symbol) [0x011F11D8]
+	(No symbol) [0x011F12BB]
+	(No symbol) [0x011E4857]
+	BaseThreadInitThunk [0x75E105C9+25]
+	RtlGetAppContainerNamedObjectPath [0x773377AD+237]
+	RtlGetAppContainerNamedObjectPath [0x7733777D+189]
+' WHERE execution_num='1690872899' AND plan_id=3
+2023-08-01 14:55:06,086 running_plan.py[line: 83] INFO: 正在释放资源
+2023-08-01 14:55:06,089 running_plan.py[line: 84] INFO: 正在断开与项目关联的数据库连接
+2023-08-01 14:55:06,092 running_plan.py[line: 90] INFO: 正在清理与项目关联的全局变量
+2023-08-01 14:55:06,094 main.py[line: 54] INFO: 执行成功，正在更新数据库运行计划的运行状态
+2023-08-01 14:55:06,095 mydb.py[line: 81] INFO: update_query：UPDATE `website_running_plan` SET running_status ='运行成功', remark='' WHERE running_plan_num= 1686290734016043

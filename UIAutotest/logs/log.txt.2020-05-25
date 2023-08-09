@@ -1,0 +1,15 @@
+2018-04-10 11:31:00,620 main.py[line: 26] INFO: 执行当前脚本的Python版本：3.4.0
+2018-04-10 11:31:00,625 main.py[line: 28] INFO: 当前运行模式为：SingleProject
+2018-04-10 11:31:00,626 main.py[line: 31] INFO: 当前运行计划编号为：1519784701
+2018-04-10 11:31:00,626 main.py[line: 41] INFO: 正在查询运行计划相关信息
+2018-04-10 11:31:00,626 mydb.py[line: 96] INFO: query：SELECT running_plan_name,project_id, project_name, plan_name, plan_id, valid_flag FROM `website_running_plan` WHERE running_plan_num =%s  data：('1519784701',)
+2018-04-10 11:31:00,627 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT running_plan_name,project_id, project_name, plan_name, plan_id, valid_flag FROM `website_running_plan` WHERE running_plan_num =1519784701
+2018-04-10 11:31:00,654 main.py[line: 48] INFO: 待运行项目：名称：数据灯塔-前台，ID：1，关联的测试计划有：UI测试计划1
+2018-04-10 11:31:00,654 main.py[line: 51] INFO: ======================开始执行运行计划[名称：数据灯塔前台UI测试运行计划1]======================
+2018-04-10 11:31:00,655 running_plan.py[line: 24] INFO: 正在查询项目[ID：1,名称：数据灯塔-前台]相关信息
+2018-04-10 11:31:00,655 mydb.py[line: 96] INFO: query：SELECT home_page, environment, valid_flag FROM `website_ui_project_setting` WHERE id = %s  data：(1,)
+2018-04-10 11:31:00,655 mydb.py[line: 99] INFO: 执行的查询语句为：SELECT home_page, environment, valid_flag FROM `website_ui_project_setting` WHERE id = 1
+2018-04-10 11:31:00,729 running_plan.py[line: 31] INFO: 正在查询与项目关联的数据库信息
+2018-04-10 11:31:00,730 mydb.py[line: 124] INFO: query：SELECT db_type, db_alias, db_name, db_host, db_port, db_user, db_passwd FROM `website_database_setting`WHERE project_id = %s AND project_type='UI项目' AND environment= %s  data：(1, '测试环境')
+2018-04-10 11:31:00,823 running_plan.py[line: 45] INFO: 正在查询与项目关联的全局变量
+2018-04-10 11:31:00,823 mydb.py[line: 124] INFO: query：SELECT `name`, `value` FROM `website_global_variable_setting` WHERE project_id = %s AND project_type='UI项目' AND environment= %s  data：(1, '测试环境')
