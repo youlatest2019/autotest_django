@@ -52,9 +52,11 @@
                             var rootNodeId =  $(this).tree('getRoot', node.target).id
                             if (node.id != rootNodeId) {  // 非根节点
                                 var father_node = $(this).tree('getParent', node.target); // 获取父节点
-                                if (node.text != '任务概况' && node.text != '任务明细') {
-                                    return;
-                                }
+                                var t = node.text;
+                                //取消判断，会导致无法加载任务详情列表
+                                //if (node.text != '任务概况' && node.text != '任务明细') {
+                                    //return;
+                                //}
 
                                 // 取消上次延时未执行的方法
                                 clearTimeout(id_of_settimeout);
@@ -62,7 +64,7 @@
                                 //执行延时
                                 id_of_settimeout = setTimeout(function(){
                                     if ($(this).tree('isLeaf', node.target)) { //如果为叶节点，即无子节点，则打开页面
-                                        addTab(node.text, father_node.id);
+                                        addTab(node.text + '-任务概况', father_node.id);
                                     }
                                 }, 300);
 
@@ -167,7 +169,9 @@
         // 点击页面树，叶节点，打开对应tab页的函数实现
         function addTab(title, nodeID){
             var url;
-            if (title == '任务概况') {
+            //if (title == '任务概况') {
+            //传入的titl包含任务概况即可
+            if (title.match('任务概况')) {
                 url  = '/pages/testTaskOverview';
             } else if (title == '任务明细'){
                 url = '/pages/testTaskDetail';

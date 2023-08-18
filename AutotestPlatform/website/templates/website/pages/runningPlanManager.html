@@ -314,7 +314,7 @@
                 if (index == undefined) { // 点击表格上方的 修改 按钮
                     //获取选中行的数据  
                     var rowsChecked = $('#Running_plan').datagrid('getChecked');
-                    if (rowsChecked.length < 1) {  //如果没有选中行，提示信息  
+                    if (rowsChecked.length < 1) {  //如果没有选中行，提示信息
                         $.messager.alert("提示消息", "请选择要修改的记录！", 'info');
                         return;
                     } else if (rowsChecked.length > 1) {
@@ -326,6 +326,7 @@
                 } else { // 点击记录行所在的 修改 按钮
                     ID = rowID;
                     editIndex = index;
+                    var rowsChecked = $('#Running_plan').datagrid('getRows');//修复点击行操作中的修改按钮，保存时报错问题
                 }
 
                 hideNoneEditBtn(editIndex);
