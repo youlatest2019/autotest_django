@@ -2,7 +2,6 @@
 # -*- coding:utf-8 -*-
 
 
-
 from common.log import logger
 from common.globalvar import db_related_to_project_dic
 from unittesttestcase import MyUnittestTestCase
